@@ -7,9 +7,11 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
 public class Mining {
-	public static void main(String args[]) throws Exception {
-		//uèitamo dataset
-		String dataset = "C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza\\crime_rules.csv";
+	
+	public static void getRules() throws Exception {
+		//uèitamo dataset koji smo dobili u Create_CSV !!!
+		String dataset = "C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza\\crime_rules.csv"; //prilagoditi path
+		System.out.println(dataset);
 		DataSource source = new DataSource(dataset);
 		Instances data = source.getDataSet();
 		

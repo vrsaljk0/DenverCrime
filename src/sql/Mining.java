@@ -1,4 +1,4 @@
-package denvercrime;
+package sql;
 
 //ZANEMARIMO WARNINGE 'illegal reflective access' AKO VAM SE JAVLJAJU JAVA NES SERE BZVZ (VERZIJA 8 i 9)
 

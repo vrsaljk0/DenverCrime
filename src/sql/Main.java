@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package sql;
 
 import java.sql.*;
@@ -52,3 +53,14 @@ public class Main {
 	} 
 	
 }
+=======
+package denvercrime;
+
+public class Main { 
+	
+	public static void main(String[] args) throws Exception {
+		Create_CSV.getCSV();
+		Mining.getRules();
+	}	
+}
+>>>>>>> 5bfe4e07232b30b9b9bbe9c841d59223dddc0a30

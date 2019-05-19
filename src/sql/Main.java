@@ -7,13 +7,14 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		getConnection();
 		
-		Mine.dataMine();
+		//Mine.dataMine();
+		Gui_login guilogin = new Gui_login();
 	}
 	
 	public static Connection getConnection() throws Exception{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
-			String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);
@@ -21,7 +22,7 @@ public class Main {
 			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("It's connected!!!!!");
 
-			String query = "SELECT * FROM ucenici";
+			String query = "SELECT * FROM user";
 
 		      // create the java statement
 		      Statement st = con.createStatement();
@@ -33,12 +34,12 @@ public class Main {
 		      while (rs.next())
 		      {
 		        int id = rs.getInt("ID");
-		        String firstName = rs.getString("ime");
-		        String lastName = rs.getString("prezime");
-		        int age = rs.getInt("godine");
+		        String firstName = rs.getString("Ime");
+		        String lastName = rs.getString("Prezime");
+		        int role = rs.getInt("Područje");
 		        
 		        // print the results
-		        System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, age);
+		        System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, role);
 		      }
 		      st.close();
 			 

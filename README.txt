@@ -19,7 +19,8 @@ Mining.getRules
 -isti mine - FilteredAssociator samo učitavamo novu bazu koju smo povukli s phpmyadmina tako da je up to date
 
 23.5.2019
-crime_sreden.csv je file koji ćemo koristiti za mining. S obzirom da ne možemo uploadti 400k linija u phpmyadmin (tj. ja nez kako) morat ćemo raditi direkt mining iz file-a, a bazu koristit za admina/patrolu i dodavanje zlocina pa ko fol izlevatiti da se to mijenja (ne možemo mi toliko zločina dodati na prezentaciji da bi odma vidjeli promjenu u rulovim)
+crime_sreden.csv je file koji ćemo koristiti za mining. 
+S obzirom da ne možemo uploadti 400k linija u phpmyadmin (tj. ja nez kako) morat ćemo raditi direkt mining iz file-a, a bazu koristit za admina/patrolu i dodavanje zlocina pa ko fol izlevatiti da se to mijenja (ne možemo mi toliko zločina dodati na prezentaciji da bi odma vidjeli promjenu u rulovim)
 
 
 

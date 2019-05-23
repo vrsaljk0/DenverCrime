@@ -24,21 +24,24 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class Gui_patrola {
 
 	private JFrame frame;
 	private static JTextField txtPatrola;
-	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField txtUnosZlocina;
+	private JTextField txtIdKategorijePrekrajazlocina;
+	private JTextField txtDatumPrijavePrekrajazlocina;
+	private JTextField txtIdDistriktaPrekrajazlocina;
+	private JTextField txtIdSusjedstvaPrekrajazlocina;
+	private JPanel panel_1;
 
 	/**
 	 * Launch the application.
@@ -80,10 +83,10 @@ public class Gui_patrola {
 	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().setBackground(UIManager.getColor("Button.darkShadow"));
 		frame.setBounds(300, 300, 1250, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
 		txtPatrola = new JTextField();
 		txtPatrola.setEditable(false);
@@ -91,14 +94,7 @@ public class Gui_patrola {
 		txtPatrola.setHorizontalAlignment(SwingConstants.LEFT);
 		txtPatrola.setText("Patrola");
 		txtPatrola.setBackground(UIManager.getColor("Button.darkShadow"));
-		txtPatrola.setBounds(22, 20, 200, 39);
-		frame.getContentPane().add(txtPatrola);
 		txtPatrola.setColumns(15);
-		
-		textField = new JTextField();
-		textField.setBounds(738, 246, 150, 30);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("ZatraÅ¾i pojaÄ�anje");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -106,8 +102,6 @@ public class Gui_patrola {
 			}
 		});
 		btnNewButton.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
-		btnNewButton.setBounds(712, 709, 200, 40);
-		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Situacija je rjeÅ¡ena");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -115,12 +109,8 @@ public class Gui_patrola {
 			}
 		});
 		btnNewButton_1.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.shadow"));
-		btnNewButton_1.setBounds(984, 709, 200, 40);
-		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Log out");
-		btnNewButton_2.setBounds(1105, 12, 117, 25);
-		frame.getContentPane().add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
@@ -131,59 +121,143 @@ public class Gui_patrola {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(984, 335, 150, 30);
-		frame.getContentPane().add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(738, 335, 150, 30);
-		frame.getContentPane().add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(738, 420, 150, 30);
-		frame.getContentPane().add(textField_3);
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(984, 420, 150, 30);
-		frame.getContentPane().add(textField_4);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(984, 246, 150, 30);
-		frame.getContentPane().add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(738, 503, 150, 30);
-		frame.getContentPane().add(textField_6);
 		
 		textField_7 = new JTextField();
 		textField_7.setColumns(10);
-		textField_7.setBounds(984, 508, 150, 30);
-		frame.getContentPane().add(textField_7);
+		BufferedImage image = null;
+		image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(738, 595, 150, 30);
-		frame.getContentPane().add(textField_8);
-		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(984, 595, 150, 30);
-		frame.getContentPane().add(textField_9);
+		panel_1 = new JPanel();
+		panel_1.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(43, 183, 570, 550);
-		BufferedImage image = null;
-		image = ImageIO.read(new File("C:\\\\Romano\\\\2.god\\\\Objektno\\\\eclipse_vj\\\\MySql-vjezba\\\\src\\\\sql\\\\denver1.jpg"));
+		panel.setBounds(0, 0, 570, 550);
+		panel_1.add(panel);
 		Image scaledImage = image.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_SMOOTH);
-		panel.add(new JLabel(new ImageIcon(scaledImage)));
-		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		JLabel label = new JLabel(new ImageIcon(scaledImage));
+		label.setBounds(0, 5, 570, 550);
+		panel.add(label);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setBounds(283, 560, 4, 22);
 		panel.add(textArea);
+		
+		txtUnosZlocina = new JTextField();
+		txtUnosZlocina.setFont(new Font("Tahoma", Font.BOLD, 24));
+		txtUnosZlocina.setText("Unos zlocina :\r\n ");
+		txtUnosZlocina.setEditable(false);
+		txtUnosZlocina.setColumns(10);
+		
+		txtIdKategorijePrekrajazlocina = new JTextField();
+		txtIdKategorijePrekrajazlocina.setText("ID kategorije prekr\u0161aja/zlocina       :");
+		txtIdKategorijePrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
+		txtIdKategorijePrekrajazlocina.setBackground(Color.LIGHT_GRAY);
+		txtIdKategorijePrekrajazlocina.setColumns(10);
+		
+		txtDatumPrijavePrekrajazlocina = new JTextField();
+		txtDatumPrijavePrekrajazlocina.setText("Datum prijave prekr\u0161aja/zlocina     :");
+		txtDatumPrijavePrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
+		txtDatumPrijavePrekrajazlocina.setColumns(10);
+		txtDatumPrijavePrekrajazlocina.setBackground(Color.LIGHT_GRAY);
+		
+		txtIdDistriktaPrekrajazlocina = new JTextField();
+		txtIdDistriktaPrekrajazlocina.setText("ID distrikta prekr\u0161aja/zlocina          :");
+		txtIdDistriktaPrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
+		txtIdDistriktaPrekrajazlocina.setColumns(10);
+		txtIdDistriktaPrekrajazlocina.setBackground(Color.LIGHT_GRAY);
+		
+		txtIdSusjedstvaPrekrajazlocina = new JTextField();
+		txtIdSusjedstvaPrekrajazlocina.setText("ID susjedstva prekr\u0161aja/zlocina      :");
+		txtIdSusjedstvaPrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
+		txtIdSusjedstvaPrekrajazlocina.setColumns(10);
+		txtIdSusjedstvaPrekrajazlocina.setBackground(Color.LIGHT_GRAY);
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(22)
+					.addComponent(txtPatrola, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addGap(883)
+					.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+					.addGap(10))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(824)
+					.addComponent(txtUnosZlocina)
+					.addGap(172))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(43)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
+					.addGap(99)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtIdKategorijePrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+						.addComponent(txtDatumPrijavePrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+						.addComponent(txtIdDistriktaPrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+						.addComponent(txtIdSusjedstvaPrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+							.addGap(71)))
+					.addGap(1)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addGap(50))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addGap(50))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addGap(50))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textField_7, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addGap(50))
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+					.addGap(48))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(12)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(8)
+							.addComponent(txtPatrola, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNewButton_2))
+					.addGap(67)
+					.addComponent(txtUnosZlocina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(22)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(63)
+							.addComponent(txtIdKategorijePrekrajazlocina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(59)
+							.addComponent(txtDatumPrijavePrekrajazlocina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(55)
+							.addComponent(txtIdDistriktaPrekrajazlocina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(58)
+							.addComponent(txtIdSusjedstvaPrekrajazlocina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(171)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(63)
+							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(59)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(55)
+							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(58)
+							.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(171)
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
+		);
+		frame.getContentPane().setLayout(groupLayout);
 	}
 	
 	public static Connection getConnection(int id) throws Exception{

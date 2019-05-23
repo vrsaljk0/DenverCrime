@@ -12,7 +12,7 @@ public class Mining {
 	public static String getRules() throws Exception {
 		//uèitamo dataset koji smo dobili u Create_CSV !!!
 		//String dataset = "C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza\\crime_sreden.csv"; //prilagoditi path, zakomentirajte svoj da ne mijenjamo stalno
-		String dataset = "C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\crime_sreden.csv";
+		String dataset = "C:\\Users\\Lukaku\\Documents\\programsko\\crime_sreden.csv";
 		System.out.println(dataset);
 		DataSource source = new DataSource(dataset);
 		Instances data = source.getDataSet();

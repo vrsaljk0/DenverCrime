@@ -8,7 +8,7 @@ public class Create_CSV {
 
 	public static void getCSV() {
 		try {
-			PrintWriter file = new PrintWriter(new File("C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza\\crime_rules.csv")); //path gdje želimo spremiti bazu
+			PrintWriter file = new PrintWriter(new File("C:\\Users\\Lukaku\\Documents\\programsko\\crime_rules.csv")); //path gdje želimo spremiti bazu
 			StringBuilder str = new StringBuilder();
 			
 			Connection connection = getConnection();

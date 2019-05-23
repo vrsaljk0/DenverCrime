@@ -75,7 +75,22 @@ public class Gui_admin {
 		frame.getContentPane().add(txtAdministrator);
 		txtAdministrator.setColumns(10);
 		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(659, 198, 538, 463);
+		frame.getContentPane().add(textArea);
+		
 		JButton btnMine = new JButton("Mine");
+		btnMine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Mining.getRules();
+					textArea.setText(Mining.getRules());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		btnMine.setBounds(816, 131, 117, 25);
 		frame.getContentPane().add(btnMine);
 		
@@ -84,10 +99,6 @@ public class Gui_admin {
 		txtSearch.setBounds(945, 134, 114, 19);
 		frame.getContentPane().add(txtSearch);
 		txtSearch.setColumns(10);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(659, 198, 538, 463);
-		frame.getContentPane().add(textArea);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("");

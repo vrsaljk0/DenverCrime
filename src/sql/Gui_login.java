@@ -140,6 +140,7 @@ public class Gui_login {
 		      ResultSet rs = st.executeQuery(query);
 		      
 		      // iterate through the java resultset
+		      boolean noMatch = false;
 		      while (rs.next())
 		      {
 		        int id = rs.getInt("ID");
@@ -154,6 +155,8 @@ public class Gui_login {
 		        username1 = txtKorisnikoIme.getText();
 		        pass = txtLozinka.getText();
 		        
+		        System.out.println(user + " " + username1 + " " + pass + "  " + pas + " " + username1.equals(user));
+		        
 		        if( username1.equals(user) && pass.equals(pas) ) {
 		        	if( role.charAt(0) == 'A' ) {
 		        		System.out.printf("%s %s\n", ime, prezime);
@@ -167,14 +170,19 @@ public class Gui_login {
 		        		guipatrola.main(id);
 		        	}
 		        } else {
-		        	txtKorisnikoIme.setBorder(BorderFactory.createLineBorder(Color.RED));
-		        	txtLozinka.setBorder(BorderFactory.createLineBorder(Color.RED));
-		        	txtKorisnikoIme.setText("");
-		        	txtLozinka.setText("");
-		        	error.setVisible(true);
+		        	noMatch = true;
 		        }
 		        	
 		      }
+		      
+		      if( noMatch ) {
+		    	txtKorisnikoIme.setBorder(BorderFactory.createLineBorder(Color.RED));
+	        	txtLozinka.setBorder(BorderFactory.createLineBorder(Color.RED));
+	        	txtKorisnikoIme.setText("");
+	        	txtLozinka.setText("");
+	        	error.setVisible(true);
+		      }
+		      
 		      st.close();
 			 
 			return con;

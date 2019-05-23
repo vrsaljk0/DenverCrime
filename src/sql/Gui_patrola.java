@@ -61,7 +61,7 @@ public class Gui_patrola {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -88,10 +88,10 @@ public class Gui_patrola {
 		txtPatrola = new JTextField();
 		txtPatrola.setEditable(false);
 		txtPatrola.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
-		txtPatrola.setText("Patrola");
 		txtPatrola.setHorizontalAlignment(SwingConstants.LEFT);
+		txtPatrola.setText("Patrola");
 		txtPatrola.setBackground(UIManager.getColor("Button.darkShadow"));
-		txtPatrola.setBounds(22, 12, 200, 39);
+		txtPatrola.setBounds(22, 20, 200, 39);
 		frame.getContentPane().add(txtPatrola);
 		txtPatrola.setColumns(15);
 		
@@ -206,6 +206,8 @@ public class Gui_patrola {
 		      ResultSet rs = st.executeQuery(query);
 		      
 		      // iterate through the java resultset
+		      txtPatrola.setText("Patrola " + id);
+		      System.out.println(txtPatrola.getText());
 		      while (rs.next())
 		      {
 		        Integer ID = rs.getInt("ID");
@@ -215,7 +217,7 @@ public class Gui_patrola {
 		        String prezime = rs.getString("Prezime");
 		        String role = rs.getString("Uloga");
 		        
-		        txtPatrola.setText(txtPatrola.getText() + " " + id);
+		        
 		        	
 		      }
 		      st.close();

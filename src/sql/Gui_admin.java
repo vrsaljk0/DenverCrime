@@ -133,7 +133,8 @@ public class Gui_admin {
 		JPanel panel = new JPanel();
 		panel.setBounds(43, 183, 570, 550);
 		BufferedImage image = null;
-		image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
+		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
 		Image scaledImage = image.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_SMOOTH);
 		panel.add(new JLabel(new ImageIcon(scaledImage)));
 		frame.getContentPane().add(panel);

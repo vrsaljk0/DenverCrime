@@ -131,7 +131,8 @@ public class Gui_patrola {
 		textField_7 = new JTextField();
 		textField_7.setColumns(10);
 		BufferedImage image = null;
-		image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
+		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
 		
 		panel_1 = new JPanel();
 		panel_1.setLayout(null);

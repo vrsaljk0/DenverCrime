@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
@@ -27,20 +28,21 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Gui_patrola {
 
 	private JFrame frame;
 	private static JTextField txtPatrola;
-	private JTextField textField_1;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_7;
+	private static JTextField textField_1;
+	private static JTextField textField_4;
+	private static JTextField textField_5;
+	private static JTextField textField_7;
 	private JTextField txtUnosZlocina;
-	private JTextField txtIdKategorijePrekrajazlocina;
-	private JTextField txtDatumPrijavePrekrajazlocina;
-	private JTextField txtIdDistriktaPrekrajazlocina;
-	private JTextField txtIdSusjedstvaPrekrajazlocina;
+	private static JTextField txtIdKategorijePrekrajazlocina;
+	private static JTextField txtDatumPrijavePrekrajazlocina;
+	private static JTextField txtIdDistriktaPrekrajazlocina;
+	private static JTextField txtIdSusjedstvaPrekrajazlocina;
 	private JPanel panel_1;
 
 	/**
@@ -57,12 +59,6 @@ public class Gui_patrola {
 				}
 			}
 		});
-		try {
-			getConnection(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**
@@ -157,32 +153,48 @@ public class Gui_patrola {
 		txtUnosZlocina.setColumns(10);
 		
 		txtIdKategorijePrekrajazlocina = new JTextField();
-		txtIdKategorijePrekrajazlocina.setText("ID kategorije prekr\u0161aja/zlocina       :");
+		txtIdKategorijePrekrajazlocina.setText("ID kategorije prekr\u0161aja/zlocina:");
+		txtIdKategorijePrekrajazlocina.setEditable(false);
 		txtIdKategorijePrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
 		txtIdKategorijePrekrajazlocina.setBackground(Color.LIGHT_GRAY);
 		txtIdKategorijePrekrajazlocina.setColumns(10);
 		
 		txtDatumPrijavePrekrajazlocina = new JTextField();
-		txtDatumPrijavePrekrajazlocina.setText("Datum prijave prekr\u0161aja/zlocina     :");
+		txtDatumPrijavePrekrajazlocina.setText("Datum prijave prekr\u0161aja/zlocina:");
+		txtDatumPrijavePrekrajazlocina.setEditable(false);
 		txtDatumPrijavePrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
 		txtDatumPrijavePrekrajazlocina.setColumns(10);
 		txtDatumPrijavePrekrajazlocina.setBackground(Color.LIGHT_GRAY);
 		
 		txtIdDistriktaPrekrajazlocina = new JTextField();
-		txtIdDistriktaPrekrajazlocina.setText("ID distrikta prekr\u0161aja/zlocina          :");
+		txtIdDistriktaPrekrajazlocina.setText("ID distrikta prekr\u0161aja/zlocina:");
+		txtIdDistriktaPrekrajazlocina.setEditable(false);
 		txtIdDistriktaPrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
 		txtIdDistriktaPrekrajazlocina.setColumns(10);
 		txtIdDistriktaPrekrajazlocina.setBackground(Color.LIGHT_GRAY);
 		
 		txtIdSusjedstvaPrekrajazlocina = new JTextField();
-		txtIdSusjedstvaPrekrajazlocina.setText("ID susjedstva prekr\u0161aja/zlocina      :");
+		txtIdSusjedstvaPrekrajazlocina.setText("ID susjedstva prekr\u0161aja/zlocina:");
+		txtIdSusjedstvaPrekrajazlocina.setEditable(false);
 		txtIdSusjedstvaPrekrajazlocina.setHorizontalAlignment(SwingConstants.LEFT);
 		txtIdSusjedstvaPrekrajazlocina.setColumns(10);
 		txtIdSusjedstvaPrekrajazlocina.setBackground(Color.LIGHT_GRAY);
+		
+		JButton btnUnos = new JButton("Unesi");
+		btnUnos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					getConnection(0);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(22)
 					.addComponent(txtPatrola, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
 					.addGap(883)
@@ -190,35 +202,40 @@ public class Gui_patrola {
 					.addGap(10))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(824)
-					.addComponent(txtUnosZlocina)
+					.addComponent(txtUnosZlocina, 238, 238, 238)
 					.addGap(172))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(43)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
-					.addGap(99)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtIdKategorijePrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-						.addComponent(txtDatumPrijavePrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-						.addComponent(txtIdDistriktaPrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-						.addComponent(txtIdSusjedstvaPrekrajazlocina, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-							.addGap(71)))
+							.addGap(99)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtIdKategorijePrekrajazlocina, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+								.addComponent(txtDatumPrijavePrekrajazlocina, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+								.addComponent(txtIdDistriktaPrekrajazlocina, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+								.addComponent(txtIdSusjedstvaPrekrajazlocina, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+									.addGap(71))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnUnos)))
 					.addGap(1)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
 							.addGap(50))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
 							.addGap(50))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
 							.addGap(50))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField_7, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+							.addComponent(textField_7, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
 							.addGap(50))
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
 					.addGap(48))
 		);
 		groupLayout.setVerticalGroup(
@@ -228,7 +245,7 @@ public class Gui_patrola {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(8)
-							.addComponent(txtPatrola, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtPatrola, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
 						.addComponent(btnNewButton_2))
 					.addGap(67)
 					.addComponent(txtUnosZlocina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -244,8 +261,10 @@ public class Gui_patrola {
 							.addComponent(txtIdDistriktaPrekrajazlocina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 							.addGap(58)
 							.addComponent(txtIdSusjedstvaPrekrajazlocina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-							.addGap(171)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+							.addGap(47)
+							.addComponent(btnUnos, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+							.addGap(101)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(63)
 							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
@@ -256,7 +275,7 @@ public class Gui_patrola {
 							.addGap(58)
 							.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 							.addGap(171)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
+							.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
@@ -271,31 +290,38 @@ public class Gui_patrola {
 			
 			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("It's connected!!!!!");
-
-			String query = "SELECT * FROM user WHERE ID=" + id;
-
-		      // create the java statement
+			
+			String off = textField_5.getText();
+			String date = textField_1.getText();
+			String dist = textField_4.getText();
+			String neigh = textField_7.getText();
+			
+			System.out.println(off);
+			
+			String query;
+			if( off.equals("traffic") || off.equals("Traffic") ) {
+				query = "INSERT INTO crime (OFFENSE, Date, District, Neighborhood, isCrime, isTraffic) VALUES ('" + off + "', '" + date + "', '" + dist + "', '" + neigh + "', false, true)";
+			} else {
+				query = "INSERT INTO crime (OFFENSE, Date, District, Neighborhood, isCrime, isTraffic) VALUES ('" + off + "', '" + date + "', '" + dist + "', '" + neigh + "', true, false)";
+			}
+			
+			System.out.println(query);
+			// create the java statement
 		      Statement st = con.createStatement();
 		      
-		      // execute the query, and get a java resultset
-		      ResultSet rs = st.executeQuery(query);
+		      // execute the query
+		      st.executeUpdate(query);
 		      
-		      // iterate through the java resultset
-		      txtPatrola.setText("Patrola " + id);
-		      System.out.println(txtPatrola.getText());
-		      while (rs.next())
-		      {
-		        Integer ID = rs.getInt("ID");
-		        String user = rs.getString("Username");
-		        String pas = rs.getString("Lozinka");
-		        String ime = rs.getString("Ime");
-		        String prezime = rs.getString("Prezime");
-		        String role = rs.getString("Uloga");
-		        
-		        
-		        	
-		      }
+		      
+		      
 		      st.close();
+		      
+		      textField_5.setText("");
+		      textField_1.setText("");
+		      textField_4.setText("");
+		      textField_7.setText("");
+			
+			System.out.println("Uspjeh.");
 			 
 			return con;
 		}catch( Exception e ) {

@@ -266,7 +266,20 @@ public class Gui_patrola {
 			System.out.println("It's connected!!!!!");
 			
 			String off = (String) offense.getSelectedItem();
+			
+			if (off.equals("promet")) off = "traffic";
+			if (off.equals("napad")) off = "assault";
+			if (off.equals("pozar")) off = "larceny";
+			if (off.equals("provala")) off = "burglary";
+			if (off.equals("krada")) off = "theft";
+			if (off.equals("opijati")) off = "opiates";
+			if (off.equals("ostalo")) off = "other";
+			
 			String date = (String) ampm.getSelectedItem();
+			
+			if (date.equals("AM")) date = "dan";
+			if (date.equals("PM")) date = "noc";
+			
 			String dist = (String) district.getSelectedItem();
 			String neigh = neighborhood.getText();
 			

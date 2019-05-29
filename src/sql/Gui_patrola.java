@@ -30,7 +30,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import org.junit.Test;
+//import org.junit.Test;
 import javax.swing.JComboBox;
 
 public class Gui_patrola {
@@ -61,7 +61,7 @@ public class Gui_patrola {
 	/**
 	 * Launch the application.
 	 */
-	@Test
+	//@Test
 	public void main(int id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -120,7 +120,7 @@ public class Gui_patrola {
 		txtPatrola.setBackground(UIManager.getColor("Button.darkShadow"));
 		txtPatrola.setColumns(15);
 		
-		JButton btnNewButton = new JButton("ZatraÅ¾i pojaÄ�anje");
+		JButton btnNewButton = new JButton("Zatrazi pojacanje");
 		btnNewButton.setBounds(704, 742, 192, 68);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -128,7 +128,7 @@ public class Gui_patrola {
 		});
 		btnNewButton.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
 		
-		JButton btnNewButton_1 = new JButton("Situacija je rjeÅ¡ena");
+		JButton btnNewButton_1 = new JButton("Situacija je rjesena");
 		btnNewButton_1.setBounds(968, 742, 183, 68);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,8 +149,8 @@ public class Gui_patrola {
 
 		BufferedImage image = null;
 		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
-		//image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
-		image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
+		//image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(43, 269, 570, 550);
@@ -256,8 +256,8 @@ public class Gui_patrola {
 	public static Connection getConnection(int id) throws Exception{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
-			//String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			String url = "jdbc:mysql://localhost:3306/denver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			//String url = "jdbc:mysql://localhost:3306/denver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);

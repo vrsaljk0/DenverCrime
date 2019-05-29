@@ -66,7 +66,7 @@ public class Gui_patrola {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui_patrola window = new Gui_patrola();
+					Gui_patrola window = new Gui_patrola(id);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,9 +78,9 @@ public class Gui_patrola {
 	/**
 	 * Create the application.
 	 */
-	public Gui_patrola() {
+	public Gui_patrola(int id) {
 		try {
-			initialize();
+			initialize(id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class Gui_patrola {
 	 * @throws IOException 
 	 */
 
-	private void initialize() throws IOException {
+	private void initialize(int id) throws IOException {
 		
 		offense =new JComboBox(offenses);
 		offense.setBounds(968, 342, 151, 30);
@@ -116,25 +116,37 @@ public class Gui_patrola {
 		txtPatrola.setEditable(false);
 		txtPatrola.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
 		txtPatrola.setHorizontalAlignment(SwingConstants.LEFT);
-		txtPatrola.setText("Patrola");
+		txtPatrola.setText("Patrola br." + id);
 		txtPatrola.setBackground(UIManager.getColor("Button.darkShadow"));
 		txtPatrola.setColumns(15);
 		
-		JButton btnNewButton = new JButton("Zatrazi pojacanje");
-		btnNewButton.setBounds(704, 742, 192, 68);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCallForHelp = new JButton("Zatrazi pojacanje");
+		btnCallForHelp.setBounds(704, 142, 192, 68);
+		btnCallForHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					actions(id, 2);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
 			}
 		});
-		btnNewButton.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
+		btnCallForHelp.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
 		
-		JButton btnNewButton_1 = new JButton("Situacija je rjesena");
-		btnNewButton_1.setBounds(968, 742, 183, 68);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnSolved = new JButton("Situacija je rjesena");
+		btnSolved.setBounds(968, 142, 183, 68);
+		btnSolved.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					actions(id, 3);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
 			}
 		});
-		btnNewButton_1.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.shadow"));
+		btnSolved.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.shadow"));
 		
 		JButton btnNewButton_2 = new JButton("Log out");
 		btnNewButton_2.setBounds(1107, 12, 117, 23);
@@ -213,7 +225,7 @@ public class Gui_patrola {
 		btnUnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					getConnection(0);
+					actions(0, 1); // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -236,8 +248,8 @@ public class Gui_patrola {
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(txtPatrola);
 		frame.getContentPane().add(btnNewButton_2);
-		frame.getContentPane().add(btnNewButton);
-		frame.getContentPane().add(btnNewButton_1);
+		frame.getContentPane().add(btnCallForHelp);
+		frame.getContentPane().add(btnSolved);
 		frame.getContentPane().add(panel_1);
 		frame.getContentPane().add(txtIdKategorijePrekrajazlocina);
 		frame.getContentPane().add(txtDatumPrijavePrekrajazlocina);
@@ -253,7 +265,7 @@ public class Gui_patrola {
 		frame.getContentPane().add(txtUnosZlocina);
 	}
 	
-	public static Connection getConnection(int id) throws Exception{
+	public static Connection actions(int id, int type) throws Exception{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -265,57 +277,85 @@ public class Gui_patrola {
 			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("It's connected!!!!!");
 			
-			String off = (String) offense.getSelectedItem();
-			
-			if (off.equals("promet")) off = "traffic";
-			if (off.equals("napad")) off = "assault";
-			if (off.equals("pozar")) off = "larceny";
-			if (off.equals("provala")) off = "burglary";
-			if (off.equals("krada")) off = "theft";
-			if (off.equals("opijati")) off = "opiates";
-			if (off.equals("ostalo")) off = "other";
-			
-			String date = (String) ampm.getSelectedItem();
-			
-			if (date.equals("AM")) date = "dan";
-			if (date.equals("PM")) date = "noc";
-			
-			String dist = (String) district.getSelectedItem();
-			String neigh = neighborhood.getText();
-			
-			System.out.println(off);
-			
-			if (neigh.equals("") || time.getText().equals("")) {
-				ERROR_forma.setVisible(true);
-			} else  {
-				String query;
-				if( off.equals("traffic") || off.equals("Traffic") ) {
-					query = "INSERT INTO crime (OFFENSE, Date, District, Neighborhood, isCrime, isTraffic) VALUES ('" + off + "', '" + date + "', '" + dist + "', '" + neigh + "', false, true)";
-				} else {
-					query = "INSERT INTO crime (OFFENSE, Date, District, Neighborhood, isCrime, isTraffic) VALUES ('" + off + "', '" + date + "', '" + dist + "', '" + neigh + "', true, false)";
+			String query;
+			if (type == 1) {
+				String off = (String) offense.getSelectedItem();
+				
+				if (off.equals("promet")) off = "traffic";
+				if (off.equals("napad")) off = "assault";
+				if (off.equals("pozar")) off = "larceny";
+				if (off.equals("provala")) off = "burglary";
+				if (off.equals("krada")) off = "theft";
+				if (off.equals("opijati")) off = "opiates";
+				if (off.equals("ostalo")) off = "other";
+				
+				String date = (String) ampm.getSelectedItem();
+				
+				if (date.equals("AM")) date = "dan";
+				if (date.equals("PM")) date = "noc";
+				
+				String dist = (String) district.getSelectedItem();
+				String neigh = neighborhood.getText();
+				
+				System.out.println(off);
+				
+				if (neigh.equals("") || time.getText().equals("")) {
+					ERROR_forma.setVisible(true);
+				} else  {
+					if( off.equals("traffic") || off.equals("Traffic") ) {
+						query = "INSERT INTO crime (OFFENSE, Date, District, Neighborhood, isCrime, isTraffic) VALUES ('" + off + "', '" + date + "', '" + dist + "', '" + neigh + "', false, true)";
+					} else {
+						query = "INSERT INTO crime (OFFENSE, Date, District, Neighborhood, isCrime, isTraffic) VALUES ('" + off + "', '" + date + "', '" + dist + "', '" + neigh + "', true, false)";
+					}
+					
+					System.out.println(query);
+					// create the java statement
+				      Statement st = con.createStatement();
+				      
+				      // execute the query
+				      st.executeUpdate(query);
+				      
+				      
+				      
+				      st.close();
+				      
+				      /*textField_5.setText("");
+				      time.setText("");
+				      textField_4.setText("");
+				      textField_7.setText("");*/
+				      neighborhood.setText("");
+				      offense.setSelectedIndex(0);
+				      ampm.setSelectedIndex(0);
+				      district.setSelectedIndex(0);
+					
+					System.out.println("Uspjeh.");
 				}
+			} else if (type == 2) {
+				String pod = "None";
 				
-				System.out.println(query);
-				// create the java statement
-			      Statement st = con.createStatement();
-			      
-			      // execute the query
-			      st.executeUpdate(query);
-			      
-			      
-			      
-			      st.close();
-			      
-			      /*textField_5.setText("");
-			      time.setText("");
-			      textField_4.setText("");
-			      textField_7.setText("");*/
-			      neighborhood.setText("");
-			      offense.setSelectedIndex(0);
-			      ampm.setSelectedIndex(0);
-			      district.setSelectedIndex(0);
+				query = "SELECT Podrucje FROM user WHERE ID='" + id + "'";
 				
-				System.out.println("Uspjeh.");
+			    Statement st = con.createStatement();
+			    
+			    ResultSet rs = st.executeQuery(query);
+			    
+			    while (rs.next()) {
+			        pod = rs.getString("Podrucje");
+			    }
+			    
+				query = "INSERT INTO critical (id_patrola, podrucje, isCrit) VALUES ('" + id + "', '" + pod + "', true)";
+			      
+			    st.executeUpdate(query);
+			    
+			    System.out.println("Uspjeh.");
+			} else {
+				query = "UPDATE critical SET isCrit=False WHERE id_patrola='" + id + "'";
+				
+			    Statement st = con.createStatement();
+			      
+			    st.executeUpdate(query);
+			    
+			    System.out.println("Uspjeh.");
 			}
 			 
 			return con;

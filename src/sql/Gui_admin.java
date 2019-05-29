@@ -131,7 +131,7 @@ public class Gui_admin {
 		btnPreusmjeri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					preusmjeri();
+					action(1); // 1 - preusmjeri, 2 - šalji pojačanje
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -142,6 +142,16 @@ public class Gui_admin {
 		
 		JButton btnPoaljiPojaanje = new JButton("Posalji pojacanje");
 		btnPoaljiPojaanje.setBounds(1036, 525, 170, 25);
+		btnPoaljiPojaanje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					action(2); // 1 - preusmjeri, 2 - šalji pojačanje
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		frame.getContentPane().add(btnPoaljiPojaanje);
 		
 		JButton btnLogOut = new JButton("Log out");
@@ -179,7 +189,7 @@ public class Gui_admin {
 			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("It's connected!!!!!");
 			
-			String query = "SELECT ID FROM user";
+			String query = "SELECT ID FROM user WHERE Uloga='P'";
 
 		      // create the java statement
 		      Statement st = con.createStatement();
@@ -193,7 +203,7 @@ public class Gui_admin {
 		      {
 		        Integer ID = rs.getInt("ID");
 		        
-		        patrol[br++] = ID.toString();
+		        patrol[br++] = "Patrola " + ID.toString();
 		        
 		        System.out.println(patrol[br-1]);
 		      }
@@ -207,7 +217,7 @@ public class Gui_admin {
 		return null;
 	}
 	
-	public static Connection preusmjeri() throws Exception{
+	public static Connection action(int type) throws Exception{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -219,22 +229,54 @@ public class Gui_admin {
 			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("It's connected!!!!!");
 			
-			String pat = (String) patrols.getSelectedItem();
-			String pod = (String) districts.getSelectedItem();
-			
-			String query = "UPDATE user SET Podrucje='" + pod + "' WHERE ID='" + pat + "'";
-			
-			System.out.println(query);
+			String query;
+			if (type == 1) {
+				String pat = (String) patrols.getSelectedItem();
+				String pod = (String) districts.getSelectedItem();
+				
+				query = "UPDATE user SET Podrucje='" + pod + "' WHERE ID='" + pat.charAt(8) + "'";
+				
+				System.out.println(query);
 
-		      // create the java statement
-			Statement st = con.createStatement();
+			      // create the java statement
+				Statement st = con.createStatement();
+			      
+			      // execute the query
+			      st.executeUpdate(query);
+			      
+			     System.out.println("Uspjeh!!!!");
+			     
+			     st.close();
+			} else {
+				String sel_pat = (String) patrols.getSelectedItem();
+				String sel_pod = (String) districts.getSelectedItem();
+				int flag = 0;
+				
+				query = "SELECT isCrit FROM critical WHERE podrucje='" + sel_pod + "'";
+				
+				Statement st = con.createStatement();
+				
+				ResultSet rs = st.executeQuery(query);
+				
+			    while (rs.next())
+			    {
+			       flag = rs.getInt("isCrit");
+			       
+			       if (flag == 1) break;
+			    }
+			    
+			    if (flag == 1) {
+			    	query = "UPDATE user SET Podrucje='" + sel_pod + "' WHERE ID='" + sel_pat.charAt(8) + "'";
+				      
+				    st.executeUpdate(query);
+				    
+				    System.out.println("Uspjeh.");
+			    } else {
+			    	System.out.println("To podrucje ne treba pojacanje.");
+			    }
+			}
 		      
-		      // execute the query
-		      st.executeUpdate(query);
-		      
-		     System.out.println("Uspjeh!!!!");
-		      
-			st.close();
+			
 			 
 			return con;
 		}catch( Exception e ) {

@@ -166,7 +166,7 @@ public class Gui_login {
 		        	} else {
 		        		System.out.println("Opala patrola!");
 		        		frame.setVisible(false);
-		        		Gui_patrola guipatrola = new Gui_patrola();
+		        		Gui_patrola guipatrola = new Gui_patrola(id);
 		        		guipatrola.main(id);
 		        	}
 		        } else {

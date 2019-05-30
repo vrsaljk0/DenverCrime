@@ -129,7 +129,7 @@ public class Gui_patrola {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rije≈°eno
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rijeöeno
 			}
 		});
 		btnCallForHelp.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
@@ -143,7 +143,7 @@ public class Gui_patrola {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rije≈°eno
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rijeöeno
 			}
 		});
 		btnSolved.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.shadow"));
@@ -180,6 +180,150 @@ public class Gui_patrola {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(283, 560, 4, 22);
 		panel.add(textArea);
+		
+		JLabel lblA = new JLabel("A");
+		lblA.setBounds(113, 320, 56, 110);
+		panel.add(lblA);
+		
+		JLabel lblA_1 = new JLabel("A_1");
+		lblA_1.setBounds(94, 369, 21, 13);
+		panel.add(lblA_1);
+		
+		JLabel lblA_2 = new JLabel("A_2");
+		lblA_2.setBounds(56, 392, 56, 38);
+		panel.add(lblA_2);
+		
+		JLabel lblA_3 = new JLabel("A_3");
+		lblA_3.setBounds(77, 427, 79, 28);
+		panel.add(lblA_3);
+		
+		JLabel lblA_4 = new JLabel("A_4");
+		lblA_4.setBounds(94, 440, 75, 75);
+		panel.add(lblA_4);
+		
+		JLabel lblA_5 = new JLabel("A_5");
+		lblA_5.setBounds(67, 450, 28, 65);
+		panel.add(lblA_5);
+		
+		JLabel lblA_6 = new JLabel("A_6");
+		lblA_6.setBounds(66, 508, 49, 32);
+		panel.add(lblA_6);
+		
+		JLabel lblA_7 = new JLabel("A_7");
+		lblA_7.setBounds(25, 537, 92, 13);
+		panel.add(lblA_7);
+		
+		JLabel lblA_8 = new JLabel("A_8");
+		lblA_8.setBounds(0, 477, 70, 44);
+		panel.add(lblA_8);
+		
+		JLabel lblB = new JLabel("B");
+		lblB.setBounds(170, 320, 21, 102);
+		panel.add(lblB);
+		
+		JLabel lblB_1 = new JLabel("B_1");
+		lblB_1.setBounds(170, 320, 128, 50);
+		panel.add(lblB_1);
+		
+		JLabel lblB_2 = new JLabel("B_2");
+		lblB_2.setBounds(244, 231, 56, 94);
+		panel.add(lblB_2);
+		
+		JLabel lblB_3 = new JLabel("B_3");
+		lblB_3.setBounds(201, 369, 99, 38);
+		panel.add(lblB_3);
+		
+		JLabel lblB_4 = new JLabel("B_4");
+		lblB_4.setBounds(195, 405, 21, 22);
+		panel.add(lblB_4);
+		
+		JLabel lblB_5 = new JLabel("B_5");
+		lblB_5.setBounds(270, 394, 28, 28);
+		panel.add(lblB_5);
+		
+		JLabel lblC = new JLabel("C");
+		lblC.setBounds(298, 320, 113, 122);
+		panel.add(lblC);
+		
+		JLabel lblC_1 = new JLabel("C_1");
+		lblC_1.setBounds(352, 441, 128, 22);
+		panel.add(lblC_1);
+		
+		JLabel lblC_2 = new JLabel("C_2");
+		lblC_2.setBounds(362, 460, 103, 65);
+		panel.add(lblC_2);
+		
+		JLabel lblC_3 = new JLabel("C_3");
+		lblC_3.setBounds(389, 379, 92, 65);
+		panel.add(lblC_3);
+		
+		JLabel lblC_4 = new JLabel("C_4");
+		lblC_4.setBounds(469, 417, 49, 38);
+		panel.add(lblC_4);
+		
+		JLabel lblD = new JLabel("D");
+		lblD.setBounds(114, 182, 128, 143);
+		panel.add(lblD);
+		
+		JLabel lblD_1 = new JLabel("D_1");
+		lblD_1.setBounds(244, 172, 52, 68);
+		panel.add(lblD_1);
+		
+		JLabel lblD_2 = new JLabel("D_2");
+		lblD_2.setBounds(201, 147, 41, 53);
+		panel.add(lblD_2);
+		
+		JLabel lblE = new JLabel("E");
+		lblE.setBounds(298, 198, 148, 122);
+		panel.add(lblE);
+		
+		JLabel lblE_1 = new JLabel("E_1");
+		lblE_1.setBounds(430, 240, 56, 81);
+		panel.add(lblE_1);
+		
+		JLabel lblE_2 = new JLabel("E_2");
+		lblE_2.setBounds(408, 172, 38, 28);
+		panel.add(lblE_2);
+		
+		JLabel lblF = new JLabel("F");
+		lblF.setBounds(94, 45, 103, 137);
+		panel.add(lblF);
+		
+		JLabel lblF_1 = new JLabel("F_1");
+		lblF_1.setBounds(170, 45, 166, 102);
+		panel.add(lblF_1);
+		
+		JLabel lblF_2 = new JLabel("F_2");
+		lblF_2.setBounds(232, 126, 103, 44);
+		panel.add(lblF_2);
+		
+		JLabel lblF_3 = new JLabel("F_3");
+		lblF_3.setBounds(298, 167, 38, 33);
+		panel.add(lblF_3);
+		
+		JLabel lblG = new JLabel("G");
+		lblG.setBounds(334, 59, 113, 143);
+		panel.add(lblG);
+		
+		JLabel lblG_1 = new JLabel("G_1");
+		lblG_1.setBounds(430, 90, 88, 92);
+		panel.add(lblG_1);
+		
+		JLabel lblG_2 = new JLabel("G_2");
+		lblG_2.setBounds(407, 26, 79, 38);
+		panel.add(lblG_2);
+		
+		JLabel lblG_3 = new JLabel("G_3");
+		lblG_3.setBounds(469, 96, 91, 38);
+		panel.add(lblG_3);
+		
+		JLabel lblG_4 = new JLabel("G_4");
+		lblG_4.setBounds(439, 5, 49, 155);
+		panel.add(lblG_4);
+		
+		JLabel lblG_5 = new JLabel("G_5");
+		lblG_5.setBounds(439, 147, 92, 17);
+		panel.add(lblG_5);
 		
 		txtUnosZlocina = new JTextField();
 		txtUnosZlocina.setBounds(806, 251, 238, 35);
@@ -225,7 +369,7 @@ public class Gui_patrola {
 		btnUnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					actions(0, 1); // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rije≈°eno
+					actions(0, 1); // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rijeöeno
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

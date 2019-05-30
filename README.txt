@@ -22,6 +22,12 @@ Mining.getRules
 crime_sreden.csv je file koji ćemo koristiti za mining. 
 S obzirom da ne možemo uploadti 400k linija u phpmyadmin (tj. ja nez kako) morat ćemo raditi direkt mining iz file-a, a bazu koristit za admina/patrolu i dodavanje zlocina pa ko fol izlevatiti da se to mijenja (ne možemo mi toliko zločina dodati na prezentaciji da bi odma vidjeli promjenu u rulovim)
 
+30.5.2019
+dodala okvire i oznake patrola. 
+Ako zelimo da se i okvir ofarba u crveno je tlaka jer se districts dodiruju u nekim granicama. Pripremila sam kod i za to tako da u tom slucaju, najprije sve okvire u CRNO, zatim sve okvire od opakih districta u CRVENO.
+Jednostavniji i pouzdaniji nacin je da farbamo background oznake districta, primjer je u kodu.
+Za sad napravljena samo patrola, za admina samo treba prekopirat kod, to cu ovih dana, valjda ce pasat sve
+
 
 
 

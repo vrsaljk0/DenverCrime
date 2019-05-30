@@ -32,6 +32,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 //import org.junit.Test;
 import javax.swing.JComboBox;
+import javax.swing.JTextPane;
 
 public class Gui_patrola {
 
@@ -92,6 +93,7 @@ public class Gui_patrola {
 	 * @throws IOException 
 	 */
 
+	@SuppressWarnings("unused")
 	private void initialize(int id) throws IOException {
 		
 		offense =new JComboBox(offenses);
@@ -129,7 +131,7 @@ public class Gui_patrola {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rijeï¿½eno
 			}
 		});
 		btnCallForHelp.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
@@ -143,7 +145,7 @@ public class Gui_patrola {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rijeï¿½eno
 			}
 		});
 		btnSolved.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.shadow"));
@@ -161,8 +163,8 @@ public class Gui_patrola {
 
 		BufferedImage image = null;
 		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
-		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
-		//image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
+		//image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(43, 269, 570, 550);
@@ -173,157 +175,249 @@ public class Gui_patrola {
 		panel_1.add(panel);
 		Image scaledImage = image.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_SMOOTH);
 		panel.setLayout(null);
+		
+		JPanel B1 = new JPanel();
+		B1.setBackground(Color.BLACK);
+		B1.setBounds(271, 0, 4, 56);
+		panel.add(B1);
+		
+		JPanel AB = new JPanel();
+		AB.setBackground(Color.BLACK);
+		AB.setBounds(271, 55, 4, 108);
+		panel.add(AB);
+		
+		JPanel B2 = new JPanel();
+		B2.setBackground(Color.BLACK);
+		B2.setBounds(271, 0, 289, 4);
+		panel.add(B2);
+		
+		JPanel B3 = new JPanel();
+		B3.setBackground(Color.BLACK);
+		B3.setBounds(482, 163, 78, 4);
+		panel.add(B3);
+		
+		JPanel B4 = new JPanel();
+		B4.setBackground(Color.BLACK);
+		B4.setBounds(556, 0, 4, 163);
+		panel.add(B4);
+		
+		JPanel F1 = new JPanel();
+		F1.setBackground(Color.BLACK);
+		F1.setBounds(3, 354, 112, 4);
+		panel.add(F1);
+		
+		JPanel F2 = new JPanel();
+		F2.setBackground(Color.BLACK);
+		F2.setBounds(0, 354, 4, 196);
+		panel.add(F2);
+		
+		JPanel F3 = new JPanel();
+		F3.setBackground(Color.BLACK);
+		F3.setBounds(199, 398, 4, 152);
+		panel.add(F3);
+		
+		JPanel F4 = new JPanel();
+		F4.setBackground(Color.BLACK);
+		F4.setBounds(0, 545, 200, 4);
+		panel.add(F4);
+		
+		JPanel A1 = new JPanel();
+		A1.setBackground(Color.BLACK);
+		A1.setBounds(86, 52, 189, 4);
+		panel.add(A1);
+		
+		JPanel A2 = new JPanel();
+		A2.setBackground(Color.BLACK);
+		A2.setBounds(86, 193, 29, 4);
+		panel.add(A2);
+		
+		JPanel A3 = new JPanel();
+		A3.setBackground(Color.BLACK);
+		A3.setBounds(85, 52, 4, 145);
+		panel.add(A3);
+		
+		JPanel A4 = new JPanel();
+		A4.setBackground(Color.BLACK);
+		A4.setBounds(271, 52, 4, 113);
+		panel.add(A4);
+		
+		JPanel C1 = new JPanel();
+		C1.setBackground(Color.BLACK);
+		C1.setBounds(111, 193, 4, 166);
+		panel.add(C1);
+		
+		JPanel CD = new JPanel();
+		CD.setBackground(Color.BLACK);
+		CD.setBounds(241, 193, 4, 207);
+		panel.add(CD);
+		
+		JPanel C3 = new JPanel();
+		C3.setBackground(Color.BLACK);
+		C3.setBounds(199, 396, 43, 4);
+		panel.add(C3);
+		
+		JPanel CF = new JPanel();
+		CF.setBackground(Color.BLACK);
+		CF.setBounds(111, 354, 92, 5);
+		panel.add(CF);
+		
+		JPanel CF2 = new JPanel();
+		CF2.setBackground(Color.BLACK);
+		CF2.setBounds(199, 357, 4, 43);
+		panel.add(CF2);
+		
+		JPanel AE1 = new JPanel();
+		AE1.setBackground(Color.BLACK);
+		AE1.setBounds(271, 163, 4, 32);
+		panel.add(AE1);
+		
+		JPanel BE1 = new JPanel();
+		BE1.setBackground(Color.BLACK);
+		BE1.setBounds(271, 163, 214, 4);
+		panel.add(BE1);
+		
+		JPanel EG = new JPanel();
+		EG.setBackground(Color.BLACK);
+		EG.setBounds(332, 273, 154, 4);
+		panel.add(EG);
+		
+		JPanel E4 = new JPanel();
+		E4.setBackground(Color.BLACK);
+		E4.setBounds(482, 163, 4, 113);
+		panel.add(E4);
+		
+		JPanel DE = new JPanel();
+		DE.setBackground(Color.BLACK);
+		DE.setBounds(271, 192, 64, 4);
+		panel.add(DE);
+		
+		JPanel E6 = new JPanel();
+		E6.setBackground(Color.BLACK);
+		E6.setBounds(332, 193, 3, 84);
+		panel.add(E6);
+		
+		JPanel D1 = new JPanel();
+		D1.setBackground(Color.BLACK);
+		D1.setBounds(241, 397, 4, 43);
+		panel.add(D1);
+		
+		JPanel DE1 = new JPanel();
+		DE1.setBackground(Color.BLACK);
+		DE1.setBounds(332, 193, 4, 84);
+		panel.add(DE1);
+		
+		JPanel AD = new JPanel();
+		AD.setBackground(Color.BLACK);
+		AD.setBounds(241, 193, 29, 4);
+		panel.add(AD);
+		
+		JPanel D4 = new JPanel();
+		D4.setBackground(Color.BLACK);
+		D4.setBounds(241, 435, 92, 5);
+		panel.add(D4);
+		
+		JPanel DG = new JPanel();
+		DG.setBackground(Color.BLACK);
+		DG.setBounds(332, 273, 4, 167);
+		panel.add(DG);
+		
+		JPanel G2 = new JPanel();
+		G2.setBackground(Color.BLACK);
+		G2.setBounds(332, 516, 189, 4);
+		panel.add(G2);
+		
+		JPanel G3 = new JPanel();
+		G3.setBackground(Color.BLACK);
+		G3.setBounds(482, 273, 39, 4);
+		panel.add(G3);
+		
+		JPanel G4 = new JPanel();
+		G4.setBackground(Color.BLACK);
+		G4.setBounds(517, 273, 4, 247);
+		panel.add(G4);
+		
+		JTextPane Atxt = new JTextPane();
+		Atxt.setForeground(new Color(0, 0, 0));
+		Atxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Atxt.setBackground(new Color(255, 255, 255));
+		Atxt.setText("A");
+		Atxt.setBounds(86, 52, 20, 32);
+		panel.add(Atxt);
+		
+		JTextPane Btxt = new JTextPane();
+		Btxt.setForeground(new Color(0, 0, 0));
+		Btxt.setText("B");
+		Btxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Btxt.setBackground(new Color(255, 255, 255));
+		Btxt.setBounds(271, 0, 20, 32);
+		panel.add(Btxt);
+		
+		JTextPane Ctxt = new JTextPane();
+		Ctxt.setForeground(new Color(0, 0, 0));
+		Ctxt.setText("C");
+		Ctxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Ctxt.setBackground(new Color(255, 255, 255));
+		Ctxt.setBounds(111, 260, 20, 32);
+		panel.add(Ctxt);
+		
+		JTextPane Ftxt = new JTextPane();
+		Ftxt.setForeground(new Color(0, 0, 0));
+		Ftxt.setText("F");
+		Ftxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Ftxt.setBackground(new Color(255, 255, 255));
+		Ftxt.setBounds(3, 354, 20, 32);
+		panel.add(Ftxt);
+		
+		JTextPane Dtxt = new JTextPane();
+		Dtxt.setForeground(new Color(0, 0, 0));
+		Dtxt.setText("D");
+		Dtxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Dtxt.setBackground(new Color(255, 255, 255));
+		Dtxt.setBounds(271, 245, 20, 32);
+		panel.add(Dtxt);
+		
+		JTextPane Etxt = new JTextPane();
+		Etxt.setForeground(new Color(0, 0, 0));
+		Etxt.setText("E");
+		Etxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Etxt.setBackground(new Color(255, 255, 255));
+		Etxt.setBounds(463, 205, 20, 32);
+		panel.add(Etxt);
+		
+		JTextPane Gtxt = new JTextPane();
+		Gtxt.setForeground(new Color(0, 0, 0));
+		Gtxt.setText("G");
+		Gtxt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Gtxt.setBackground(new Color(255, 255, 255));
+		Gtxt.setBounds(497, 368, 20, 32);
+		panel.add(Gtxt);
+		
+		JPanel AC = new JPanel();
+		AC.setBackground(Color.BLACK);
+		AC.setBounds(111, 192, 134, 4);
+		panel.add(AC);
+		
+		JPanel G5 = new JPanel();
+		G5.setBackground(Color.BLACK);
+		G5.setBounds(332, 436, 3, 84);
+		panel.add(G5);
 		JLabel label = new JLabel(new ImageIcon(scaledImage));
-		label.setBounds(0, 5, 570, 550);
+		label.setBounds(0, 0, 570, 550);
 		panel.add(label);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(283, 560, 4, 22);
-		panel.add(textArea);
+		///MIJENJANJA BOJE ZA DISTRICTE
 		
-		JLabel lblA = new JLabel("A");
-		lblA.setBounds(113, 320, 56, 110);
-		panel.add(lblA);
+		if(false) { //PRIMJER AKO ZELIS FARBAT I OKVIR!!!! district A
+			A1.setBackground(Color.RED);
+			A3.setBackground(Color.RED);
+			A2.setBackground(Color.RED);
+			AC.setBackground(Color.RED);
+			AE1.setBackground(Color.RED);
+			AD.setBackground(Color.RED);
+			AB.setBackground(Color.RED);
+			Atxt.setBackground(new Color(255, 0, 0));
+		} 
 		
-		JLabel lblA_1 = new JLabel("A_1");
-		lblA_1.setBounds(94, 369, 21, 13);
-		panel.add(lblA_1);
-		
-		JLabel lblA_2 = new JLabel("A_2");
-		lblA_2.setBounds(56, 392, 56, 38);
-		panel.add(lblA_2);
-		
-		JLabel lblA_3 = new JLabel("A_3");
-		lblA_3.setBounds(77, 427, 79, 28);
-		panel.add(lblA_3);
-		
-		JLabel lblA_4 = new JLabel("A_4");
-		lblA_4.setBounds(94, 440, 75, 75);
-		panel.add(lblA_4);
-		
-		JLabel lblA_5 = new JLabel("A_5");
-		lblA_5.setBounds(67, 450, 28, 65);
-		panel.add(lblA_5);
-		
-		JLabel lblA_6 = new JLabel("A_6");
-		lblA_6.setBounds(66, 508, 49, 32);
-		panel.add(lblA_6);
-		
-		JLabel lblA_7 = new JLabel("A_7");
-		lblA_7.setBounds(25, 537, 92, 13);
-		panel.add(lblA_7);
-		
-		JLabel lblA_8 = new JLabel("A_8");
-		lblA_8.setBounds(0, 477, 70, 44);
-		panel.add(lblA_8);
-		
-		JLabel lblB = new JLabel("B");
-		lblB.setBounds(170, 320, 21, 102);
-		panel.add(lblB);
-		
-		JLabel lblB_1 = new JLabel("B_1");
-		lblB_1.setBounds(170, 320, 128, 50);
-		panel.add(lblB_1);
-		
-		JLabel lblB_2 = new JLabel("B_2");
-		lblB_2.setBounds(244, 231, 56, 94);
-		panel.add(lblB_2);
-		
-		JLabel lblB_3 = new JLabel("B_3");
-		lblB_3.setBounds(201, 369, 99, 38);
-		panel.add(lblB_3);
-		
-		JLabel lblB_4 = new JLabel("B_4");
-		lblB_4.setBounds(195, 405, 21, 22);
-		panel.add(lblB_4);
-		
-		JLabel lblB_5 = new JLabel("B_5");
-		lblB_5.setBounds(270, 394, 28, 28);
-		panel.add(lblB_5);
-		
-		JLabel lblC = new JLabel("C");
-		lblC.setBounds(298, 320, 113, 122);
-		panel.add(lblC);
-		
-		JLabel lblC_1 = new JLabel("C_1");
-		lblC_1.setBounds(352, 441, 128, 22);
-		panel.add(lblC_1);
-		
-		JLabel lblC_2 = new JLabel("C_2");
-		lblC_2.setBounds(362, 460, 103, 65);
-		panel.add(lblC_2);
-		
-		JLabel lblC_3 = new JLabel("C_3");
-		lblC_3.setBounds(389, 379, 92, 65);
-		panel.add(lblC_3);
-		
-		JLabel lblC_4 = new JLabel("C_4");
-		lblC_4.setBounds(469, 417, 49, 38);
-		panel.add(lblC_4);
-		
-		JLabel lblD = new JLabel("D");
-		lblD.setBounds(114, 182, 128, 143);
-		panel.add(lblD);
-		
-		JLabel lblD_1 = new JLabel("D_1");
-		lblD_1.setBounds(244, 172, 52, 68);
-		panel.add(lblD_1);
-		
-		JLabel lblD_2 = new JLabel("D_2");
-		lblD_2.setBounds(201, 147, 41, 53);
-		panel.add(lblD_2);
-		
-		JLabel lblE = new JLabel("E");
-		lblE.setBounds(298, 198, 148, 122);
-		panel.add(lblE);
-		
-		JLabel lblE_1 = new JLabel("E_1");
-		lblE_1.setBounds(430, 240, 56, 81);
-		panel.add(lblE_1);
-		
-		JLabel lblE_2 = new JLabel("E_2");
-		lblE_2.setBounds(408, 172, 38, 28);
-		panel.add(lblE_2);
-		
-		JLabel lblF = new JLabel("F");
-		lblF.setBounds(94, 45, 103, 137);
-		panel.add(lblF);
-		
-		JLabel lblF_1 = new JLabel("F_1");
-		lblF_1.setBounds(170, 45, 166, 102);
-		panel.add(lblF_1);
-		
-		JLabel lblF_2 = new JLabel("F_2");
-		lblF_2.setBounds(232, 126, 103, 44);
-		panel.add(lblF_2);
-		
-		JLabel lblF_3 = new JLabel("F_3");
-		lblF_3.setBounds(298, 167, 38, 33);
-		panel.add(lblF_3);
-		
-		JLabel lblG = new JLabel("G");
-		lblG.setBounds(334, 59, 113, 143);
-		panel.add(lblG);
-		
-		JLabel lblG_1 = new JLabel("G_1");
-		lblG_1.setBounds(430, 90, 88, 92);
-		panel.add(lblG_1);
-		
-		JLabel lblG_2 = new JLabel("G_2");
-		lblG_2.setBounds(407, 26, 79, 38);
-		panel.add(lblG_2);
-		
-		JLabel lblG_3 = new JLabel("G_3");
-		lblG_3.setBounds(469, 96, 91, 38);
-		panel.add(lblG_3);
-		
-		JLabel lblG_4 = new JLabel("G_4");
-		lblG_4.setBounds(439, 5, 49, 155);
-		panel.add(lblG_4);
-		
-		JLabel lblG_5 = new JLabel("G_5");
-		lblG_5.setBounds(439, 147, 92, 17);
-		panel.add(lblG_5);
 		
 		txtUnosZlocina = new JTextField();
 		txtUnosZlocina.setBounds(806, 251, 238, 35);
@@ -369,7 +463,7 @@ public class Gui_patrola {
 		btnUnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					actions(0, 1); // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
+					actions(0, 1); // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rijeï¿½eno
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -407,6 +501,11 @@ public class Gui_patrola {
 		frame.getContentPane().add(neighborhood);
 		frame.getContentPane().add(ERROR_forma);
 		frame.getContentPane().add(txtUnosZlocina);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBounds(375, 269, 226, 5);
+		frame.getContentPane().add(panel_6);
+		panel_6.setBackground(Color.RED);
 	}
 	
 	public static Connection actions(int id, int type) throws Exception{

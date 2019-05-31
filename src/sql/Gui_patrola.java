@@ -176,6 +176,60 @@ public class Gui_patrola {
 		Image scaledImage = image.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_SMOOTH);
 		panel.setLayout(null);
 		
+		JLabel lblA = new JLabel("");
+		lblA.setBackground(new Color(255,0,0,0));
+		lblA.setOpaque(true);
+		lblA.setBounds(86, 55, 189, 138);
+		panel.add(lblA);
+		
+		JLabel lblB = new JLabel("");
+		lblB.setBackground(new Color(255,0,0,0));
+		lblB.setOpaque(true);
+		lblB.setBounds(271, 0, 289, 163);
+		panel.add(lblB);
+		
+		JLabel lblC1 = new JLabel("");
+		lblC1.setBackground(new Color(255,0,0,0));
+		lblC1.setOpaque(true);
+		lblC1.setBounds(111, 193, 134, 163);
+		panel.add(lblC1);
+		
+		JLabel lblC2 = new JLabel("");
+		lblC2.setBackground(new Color(255,0,0,0));
+		lblC2.setOpaque(true);
+		lblC2.setBounds(202, 356, 43, 42);
+		panel.add(lblC2);
+		
+		JLabel lblD = new JLabel("");
+		lblD.setBackground(new Color(255,0,0,0));
+		lblD.setOpaque(true);
+		lblD.setBounds(241, 193, 90, 246);
+		panel.add(lblD);
+		
+		JLabel lblE1 = new JLabel("");
+		lblE1.setBackground(new Color(255,0,0,0));
+		lblE1.setOpaque(true);
+		lblE1.setBounds(333, 163, 150, 114);
+		panel.add(lblE1);
+		
+		JLabel lblE2 = new JLabel("");
+		lblE2.setBackground(new Color(255,0,0,0));
+		lblE2.setOpaque(true);
+		lblE2.setBounds(271, 163, 64, 32);
+		panel.add(lblE2);
+		
+		JLabel lblF = new JLabel("");
+		lblF.setBackground(new Color(255,0,0,0));
+		lblF.setOpaque(true);
+		lblF.setBounds(3, 354, 197, 196);
+		panel.add(lblF);
+		
+		JLabel lblG = new JLabel("");
+		lblG.setBackground(new Color(255,0,0,64)); //crveno
+		lblG.setOpaque(true);
+		lblG.setBounds(333, 274, 188, 246);
+		panel.add(lblG);
+		
 		JPanel B1 = new JPanel();
 		B1.setBackground(Color.BLACK);
 		B1.setBounds(271, 0, 4, 56);
@@ -416,6 +470,17 @@ public class Gui_patrola {
 			AD.setBackground(Color.RED);
 			AB.setBackground(Color.RED);
 			Atxt.setBackground(new Color(255, 0, 0));
+			
+			//crveni districti
+			lblA.setBackground(new Color(255,0,0,64));
+			lblB.setBackground(new Color(255,0,0,64));
+			lblC1.setBackground(new Color(255,0,0,64));
+			lblC2.setBackground(new Color(255,0,0,64));
+			lblD.setBackground(new Color(255,0,0,64));
+			lblE1.setBackground(new Color(255,0,0,64));
+			lblE2.setBackground(new Color(255,0,0,64));
+			lblF.setBackground(new Color(255,0,0,64));
+			lblG.setBackground(new Color(255,0,0,64));
 		} 
 		
 		

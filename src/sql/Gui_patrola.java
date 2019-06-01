@@ -56,6 +56,9 @@ public class Gui_patrola {
 	private static JComboBox<String> ampm;
 	private static JTextField ERROR_forma;
 	
+	//deklaracija labela
+	private static JLabel lblA, lblB, lblC1, lblC2, lblD, lblE1, lblE2, lblF, lblG;
+	
 
 
 
@@ -82,6 +85,12 @@ public class Gui_patrola {
 	public Gui_patrola(int id) {
 		try {
 			initialize(id);
+			try {
+				actions(id, 4); // 4 - za provjeru koje je boje polje na mapi
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -163,8 +172,8 @@ public class Gui_patrola {
 
 		BufferedImage image = null;
 		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
-		//image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
-		image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
+		//image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(43, 269, 570, 550);
@@ -176,56 +185,56 @@ public class Gui_patrola {
 		Image scaledImage = image.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_SMOOTH);
 		panel.setLayout(null);
 		
-		JLabel lblA = new JLabel("");
+		lblA = new JLabel("");
 		lblA.setBackground(new Color(255,0,0,0));
 		lblA.setOpaque(true);
 		lblA.setBounds(86, 55, 189, 138);
 		panel.add(lblA);
 		
-		JLabel lblB = new JLabel("");
+		lblB = new JLabel("");
 		lblB.setBackground(new Color(255,0,0,0));
 		lblB.setOpaque(true);
 		lblB.setBounds(271, 0, 289, 163);
 		panel.add(lblB);
 		
-		JLabel lblC1 = new JLabel("");
+		lblC1 = new JLabel("");
 		lblC1.setBackground(new Color(255,0,0,0));
 		lblC1.setOpaque(true);
 		lblC1.setBounds(111, 193, 134, 163);
 		panel.add(lblC1);
 		
-		JLabel lblC2 = new JLabel("");
+		lblC2 = new JLabel("");
 		lblC2.setBackground(new Color(255,0,0,0));
 		lblC2.setOpaque(true);
 		lblC2.setBounds(202, 356, 43, 42);
 		panel.add(lblC2);
 		
-		JLabel lblD = new JLabel("");
+		lblD = new JLabel("");
 		lblD.setBackground(new Color(255,0,0,0));
 		lblD.setOpaque(true);
 		lblD.setBounds(241, 193, 90, 246);
 		panel.add(lblD);
 		
-		JLabel lblE1 = new JLabel("");
+		lblE1 = new JLabel("");
 		lblE1.setBackground(new Color(255,0,0,0));
 		lblE1.setOpaque(true);
 		lblE1.setBounds(333, 163, 150, 114);
 		panel.add(lblE1);
 		
-		JLabel lblE2 = new JLabel("");
+		lblE2 = new JLabel("");
 		lblE2.setBackground(new Color(255,0,0,0));
 		lblE2.setOpaque(true);
 		lblE2.setBounds(271, 163, 64, 32);
 		panel.add(lblE2);
 		
-		JLabel lblF = new JLabel("");
+		lblF = new JLabel("");
 		lblF.setBackground(new Color(255,0,0,0));
 		lblF.setOpaque(true);
 		lblF.setBounds(3, 354, 197, 196);
 		panel.add(lblF);
 		
-		JLabel lblG = new JLabel("");
-		lblG.setBackground(new Color(255,0,0,64)); //crveno
+		lblG = new JLabel("");
+		lblG.setBackground(new Color(255,0,0,0)); //crveno
 		lblG.setOpaque(true);
 		lblG.setBounds(333, 274, 188, 246);
 		panel.add(lblG);
@@ -461,7 +470,7 @@ public class Gui_patrola {
 		
 		///MIJENJANJA BOJE ZA DISTRICTE
 		
-		if(false) { //PRIMJER AKO ZELIS FARBAT I OKVIR!!!! district A
+		if(false) { //PRIMJER AKO ZELIS FARBAT I OKVIR!!!! district A - ne zelim...
 			A1.setBackground(Color.RED);
 			A3.setBackground(Color.RED);
 			A2.setBackground(Color.RED);
@@ -656,14 +665,107 @@ public class Gui_patrola {
 			    st.executeUpdate(query);
 			    
 			    System.out.println("Uspjeh.");
-			} else {
-				query = "UPDATE critical SET isCrit=False WHERE id_patrola='" + id + "'";
+			    
+			    if (pod.equals("A")) {
+			    	lblA.setBackground(new Color(255,0,0,64));
+			    	lblA.setOpaque(true);
+			    } else if (pod.equals("B")) {
+			    	lblB.setBackground(new Color(255,0,0,64));
+			    	lblB.setOpaque(true);
+			    } else if (pod.equals("C")) {
+			    	lblC1.setBackground(new Color(255,0,0,64));
+					lblC2.setBackground(new Color(255,0,0,64));
+					lblC1.setOpaque(true);
+					lblC2.setOpaque(true);
+			    } else if (pod.equals("D")) {
+			    	lblD.setBackground(new Color(255,0,0,64));
+			    	lblD.setOpaque(true);
+			    } else if (pod.equals("E")) {
+			    	lblE1.setBackground(new Color(255,0,0,64));
+					lblE2.setBackground(new Color(255,0,0,64));
+					lblE1.setOpaque(true);
+					lblE2.setOpaque(true);
+			    } else if (pod.equals("F")) {
+			    	lblF.setBackground(new Color(255,0,0,64));
+			    	lblF.setOpaque(true);
+			    } else if (pod.equals("G")) {
+			    	lblG.setBackground(new Color(255,0,0,64));
+			    	lblG.setOpaque(true);
+			    }
+			} else if (type == 3) {
+				String pod = "None";
+				
+				query = "SELECT Podrucje FROM critical WHERE id_patrola='" + id + "' AND isCrit=True";
 				
 			    Statement st = con.createStatement();
+			    
+			    ResultSet rs = st.executeQuery(query);
+			    
+			    while (rs.next()) {
+			        pod = rs.getString("Podrucje");
+			    }
+				query = "UPDATE critical SET isCrit=False WHERE id_patrola='" + id + "'";
 			      
 			    st.executeUpdate(query);
 			    
 			    System.out.println("Uspjeh.");
+			    
+			    if (pod.equals("A")) {
+			    	lblA.setBackground(new Color(255,0,0,0));
+			    } else if (pod.equals("B")) {
+			    	lblB.setBackground(new Color(255,0,0,0));
+			    } else if (pod.equals("C")) {
+			    	lblC1.setBackground(new Color(255,0,0,0));
+					lblC2.setBackground(new Color(255,0,0,0));
+			    } else if (pod.equals("D")) {
+			    	lblD.setBackground(new Color(255,0,0,0));
+			    } else if (pod.equals("E")) {
+			    	lblE1.setBackground(new Color(255,0,0,0));
+					lblE2.setBackground(new Color(255,0,0,0));
+			    } else if (pod.equals("F")) {
+			    	lblF.setBackground(new Color(255,0,0,0));
+			    } else if (pod.equals("G")) {
+			    	lblG.setBackground(new Color(255,0,0,0));
+			    }
+			} else {
+				String pod = "None";
+				
+				query = "SELECT Podrucje FROM critical WHERE isCrit=True";
+				
+			    Statement st = con.createStatement();
+			    
+			    ResultSet rs = st.executeQuery(query);
+			    
+			    while (rs.next()) {
+			        pod = rs.getString("Podrucje");
+			        
+			        if (pod.equals("A")) {
+				    	lblA.setBackground(new Color(255,0,0,64));
+				    	lblA.setOpaque(true);
+				    } else if (pod.equals("B")) {
+				    	lblB.setBackground(new Color(255,0,0,64));
+				    	lblB.setOpaque(true);
+				    } else if (pod.equals("C")) {
+				    	lblC1.setBackground(new Color(255,0,0,64));
+						lblC2.setBackground(new Color(255,0,0,64));
+						lblC1.setOpaque(true);
+						lblC2.setOpaque(true);
+				    } else if (pod.equals("D")) {
+				    	lblD.setBackground(new Color(255,0,0,64));
+				    	lblD.setOpaque(true);
+				    } else if (pod.equals("E")) {
+				    	lblE1.setBackground(new Color(255,0,0,64));
+						lblE2.setBackground(new Color(255,0,0,64));
+						lblE1.setOpaque(true);
+						lblE2.setOpaque(true);
+				    } else if (pod.equals("F")) {
+				    	lblF.setBackground(new Color(255,0,0,64));
+				    	lblF.setOpaque(true);
+				    } else if (pod.equals("G")) {
+				    	lblG.setBackground(new Color(255,0,0,64));
+				    	lblG.setOpaque(true);
+				    }
+			    }
 			}
 			 
 			return con;

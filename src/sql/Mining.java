@@ -43,7 +43,6 @@ public class Mining {
 		data = Filter.useFilter(data, numericToBinary);
 				
 		FPGrowth model = new FPGrowth();
-		model.setLowerBoundMinSupport(0.001);
 		SelectedTag t = new SelectedTag(3, Apriori.TAGS_SELECTION);
 		model.setMetricType(t);
 		model.setUpperBoundMinSupport(2.0);

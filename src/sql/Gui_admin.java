@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 public class Gui_admin {
 	private static String[] patrol = new String[100];
 	private static String[] district = {"A", "B", "C", "D", "E", "F", "G"};
+	private String[] algorithm = {"Odaberi algoritam", "Apriori", "FP-Growth"};
 
 	private static JFrame frame;
 	private JPanel panel_1;
@@ -39,6 +40,7 @@ public class Gui_admin {
 	private JTextField txtSearch;
 	private static JComboBox<String> patrols;
 	private static JComboBox<String> districts;
+	private JComboBox<String> algoritamCombo;
 	
 	//deklaracija labela
 	private static JLabel lblA, lblB, lblC1, lblC2, lblD, lblE1, lblE2, lblF, lblG;
@@ -105,17 +107,32 @@ public class Gui_admin {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(659, 198, 538, 250);
+		textArea.setWrapStyleWord(true);
+		textArea.getAutoscrolls();
 		frame.getContentPane().add(textArea);
 		
 		JButton btnMine = new JButton("Mine");
 		btnMine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Mining.getRules();
-					textArea.setText(Mining.getRules());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				String act = (String) algoritamCombo.getSelectedItem();
+				if (act.equals("Apriori")) {
+					try {
+						Mining.getRules();
+						textArea.setText(Mining.getRules());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else if (act.equals("FP-Growth")) {
+					try {
+						Mining.getRulesFP();
+						textArea.setText(Mining.getRulesFP());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else {
+					textArea.setText("Potrebno je odabrati algoritam kako bi se ispisali rulovi!");
 				}
 			}
 		});
@@ -477,6 +494,16 @@ public class Gui_admin {
 		panel.add(label);
 		
 		frame.getContentPane().add(panel_1);
+		
+		algoritamCombo = new JComboBox(algorithm);
+		algoritamCombo.setToolTipText("Odaberi algoritam");
+		algoritamCombo.setBounds(670, 132, 135, 22);
+		frame.getContentPane().add(algoritamCombo);
+		
+		JLabel lblMiningAlgoritam = new JLabel("Mining algoritam:");
+		lblMiningAlgoritam.setForeground(Color.WHITE);
+		lblMiningAlgoritam.setBounds(679, 107, 105, 14);
+		frame.getContentPane().add(lblMiningAlgoritam);
 	}
 	
 	public static Connection getConnection(int id) throws Exception{

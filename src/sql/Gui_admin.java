@@ -1,4 +1,4 @@
-package sql;
+package denvercrime;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -8,12 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -28,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class Gui_admin {
 	private static String[] patrol = new String[100];
@@ -37,17 +38,14 @@ public class Gui_admin {
 	private static JFrame frame;
 	private JPanel panel_1;
 	private JTextField txtAdministrator;
-	private JTextField txtSearch;
 	private static JComboBox<String> patrols;
 	private static JComboBox<String> districts;
 	private JComboBox<String> algoritamCombo;
+	private static JTextField message;
 	
 	//deklaracija labela
 	private static JLabel lblA, lblB, lblC1, lblC2, lblD, lblE1, lblE2, lblF, lblG;
 
-	/**
-	 * Launch the application.
-	 */
 	public void main(int id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -61,55 +59,48 @@ public class Gui_admin {
 		});	
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Gui_admin() {
 		try {
 			try {
 				getConnection(0);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			initialize();
 			try {
 				initCheck(5);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 * @throws IOException 
-	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setVisible(true);
 		frame.getContentPane().setBackground(UIManager.getColor("Button.darkShadow"));
-		frame.setBounds(300, 300, 1350, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		txtAdministrator = new JTextField();
 		txtAdministrator.setEditable(false);
-		txtAdministrator.setBackground(UIManager.getColor("Button.darkShadow"));
+		txtAdministrator.setBackground(Color.WHITE);
 		txtAdministrator.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
 		txtAdministrator.setText("Administrator");
 		txtAdministrator.setBounds(15, 15, 200, 39);
 		frame.getContentPane().add(txtAdministrator);
 		txtAdministrator.setColumns(10);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(659, 198, 538, 250);
+		JTextArea textArea = new JTextArea("");
 		textArea.setWrapStyleWord(true);
-		textArea.getAutoscrolls();
-		frame.getContentPane().add(textArea);
+		
+		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setBounds(659, 198, 538, 250);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		frame.getContentPane().add(scroll);
 		
 		JButton btnMine = new JButton("Mine");
 		btnMine.addActionListener(new ActionListener() {
@@ -119,8 +110,8 @@ public class Gui_admin {
 					try {
 						Mining.getRules();
 						textArea.setText(Mining.getRules());
+						
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				} else if (act.equals("FP-Growth")) {
@@ -128,7 +119,6 @@ public class Gui_admin {
 						Mining.getRulesFP();
 						textArea.setText(Mining.getRulesFP());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				} else {
@@ -139,18 +129,12 @@ public class Gui_admin {
 		btnMine.setBounds(816, 131, 117, 25);
 		frame.getContentPane().add(btnMine);
 		
-		txtSearch = new JTextField();
-		txtSearch.setText("Search");
-		txtSearch.setBounds(945, 134, 114, 19);
-		frame.getContentPane().add(txtSearch);
-		txtSearch.setColumns(10);
-		
 		patrols = new JComboBox(patrol);
 		patrols.setToolTipText("");
 		patrols.setBounds(679, 501, 170, 24);
 		frame.getContentPane().add(patrols);
 		
-		districts =new JComboBox(district);
+		districts = new JComboBox(district);
 		districts.setToolTipText("");
 		districts.setBounds(849, 501, 170, 24);
 		frame.getContentPane().add(districts);
@@ -160,9 +144,8 @@ public class Gui_admin {
 		btnPreusmjeri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					action(1); // 1 - preusmjeri, 2 - ≈°alji pojaƒçanje
+					action(1); //preusmjeravanje
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -174,9 +157,8 @@ public class Gui_admin {
 		btnPoaljiPojaanje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					action(2); // 1 - preusmjeri, 2 - ≈°alji pojaƒçanje
+					action(2); //slanje pojaËanja
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -193,15 +175,14 @@ public class Gui_admin {
 			}
 		});
 		btnLogOut.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
-		btnLogOut.setBounds(1200, 24, 117, 25);
+		btnLogOut.setBounds(1329, 26, 117, 25);
 		frame.getContentPane().add(btnLogOut);
 		
 		BufferedImage image = null;
-		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
-		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("C:\\Users\\Aspire\\eclipse-workspace\\Programsko\\src\\denvercrime\\denver1.jpg")); //putanja za sliku
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(43, 269, 570, 550);
+		panel_1.setBounds(45, 86, 570, 550);
 		panel_1.setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -259,7 +240,7 @@ public class Gui_admin {
 		panel.add(lblF);
 		
 		lblG = new JLabel("");
-		lblG.setBackground(new Color(255,0,0,0)); //crveno
+		lblG.setBackground(new Color(255,0,0,0)); 
 		lblG.setOpaque(true);
 		lblG.setBounds(333, 274, 188, 246);
 		panel.add(lblG);
@@ -504,13 +485,17 @@ public class Gui_admin {
 		lblMiningAlgoritam.setForeground(Color.WHITE);
 		lblMiningAlgoritam.setBounds(679, 107, 105, 14);
 		frame.getContentPane().add(lblMiningAlgoritam);
+		
+		message = new JTextField();
+		message.setBounds(679, 159, 499, 29);
+		frame.getContentPane().add(message);
+		message.setVisible(false);
 	}
 	
 	public static Connection getConnection(int id) throws Exception{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			//String url = "jdbc:mysql://localhost:3306/denver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);
@@ -520,28 +505,19 @@ public class Gui_admin {
 			
 			String query = "SELECT ID FROM user WHERE Uloga='P'";
 
-		      // create the java statement
-		      Statement st = con.createStatement();
+		    Statement st = con.createStatement();
+		    ResultSet rs = st.executeQuery(query);
 		      
-		      // execute the query, and get a java resultset
-		      ResultSet rs = st.executeQuery(query);
-		      
-		      // iterate through the java resultset
-		      int br = 0;
-		      while (rs.next())
-		      {
-		        Integer ID = rs.getInt("ID");
-		        
-		        patrol[br++] = "Patrola " + ID.toString();
-		        
-		        System.out.println(patrol[br-1]);
-		      }
+		    int br = 0;
+		    while (rs.next()) {
+              Integer ID = rs.getInt("ID");
+		      patrol[br++] = "Patrola " + ID.toString();
+	          System.out.println(patrol[br-1]);
+		    }
 		      
 			st.close();
-			
-			 
 			return con;
-		}catch( Exception e ) {
+		} catch( Exception e ) {
 			System.out.println(e);
 		}
 		return null;
@@ -551,7 +527,6 @@ public class Gui_admin {
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			//String url = "jdbc:mysql://localhost:3306/denver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);
@@ -560,22 +535,18 @@ public class Gui_admin {
 			System.out.println("It's connected!!!!!");
 			
 			String pod = "None";
-			
+		
 			String query = "SELECT Podrucje FROM critical WHERE isCrit=True";
 
-		      // create the java statement
-		      Statement st = con.createStatement();
+		    Statement st = con.createStatement();
+		    ResultSet rs = st.executeQuery(query);
 		      
-		      // execute the query, and get a java resultset
-		      ResultSet rs = st.executeQuery(query);
-		      
-		      while (rs.next()) {
-		        pod = rs.getString("podrucje");
-		        
-		        System.out.println(pod);
+		    while (rs.next()) {
+		      pod = rs.getString("podrucje");
+		      System.out.println(pod);
 		        
 		        if (pod.equals("A")) {
-			    	lblA.setBackground(new Color(255,0,0,64));
+	      	        lblA.setBackground(new Color(255,0,0,64));
 			    	lblA.setOpaque(true);
 			    } else if (pod.equals("B")) {
 			    	lblB.setBackground(new Color(255,0,0,64));
@@ -603,7 +574,7 @@ public class Gui_admin {
 		    }
 			 
 			return con;
-		}catch( Exception e ) {
+		} catch( Exception e ) {
 			System.out.println(e);
 		}
 		return null;
@@ -613,7 +584,6 @@ public class Gui_admin {
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			//String url = "jdbc:mysql://localhost:3306/denver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);
@@ -623,23 +593,26 @@ public class Gui_admin {
 			
 			String query;
 			if (type == 1) {
+				message.setText("Patrola uspjeöno preusmjerena!");
+				message.setBackground(Color.GREEN);
+				message.setVisible(true);
+				
 				String pat = (String) patrols.getSelectedItem();
 				String pod = (String) districts.getSelectedItem();
 				
 				query = "UPDATE user SET Podrucje='" + pod + "' WHERE ID='" + pat.charAt(8) + "'";
 				
 				System.out.println(query);
-
-			      // create the java statement
 				Statement st = con.createStatement();
-			      
-			      // execute the query
-			      st.executeUpdate(query);
-			      
-			     System.out.println("Uspjeh!!!!");
+			    st.executeUpdate(query);
+			    System.out.println("Uspjeh!!!!");
 			     
-			     st.close();
+			    st.close();
 			} else {
+				message.setText("PojaËanje uspjeöno poslano!");
+				message.setBackground(Color.GREEN);
+				message.setVisible(true);
+				
 				String sel_pat = (String) patrols.getSelectedItem();
 				String sel_pod = (String) districts.getSelectedItem();
 				int flag = 0;
@@ -647,11 +620,9 @@ public class Gui_admin {
 				query = "SELECT isCrit FROM critical WHERE podrucje='" + sel_pod + "'";
 				
 				Statement st = con.createStatement();
-				
 				ResultSet rs = st.executeQuery(query);
 				
-			    while (rs.next())
-			    {
+			    while (rs.next()) {
 			       flag = rs.getInt("isCrit");
 			       
 			       if (flag == 1) break;
@@ -659,19 +630,15 @@ public class Gui_admin {
 			    
 			    if (flag == 1) {
 			    	query = "UPDATE user SET Podrucje='" + sel_pod + "' WHERE ID='" + sel_pat.charAt(8) + "'";
-				      
 				    st.executeUpdate(query);
-				    
 				    System.out.println("Uspjeh.");
 			    } else {
 			    	System.out.println("To podrucje ne treba pojacanje.");
 			    }
 			}
 		      
-			
-			 
 			return con;
-		}catch( Exception e ) {
+		} catch( Exception e ) {
 			System.out.println(e);
 		}
 		return null;

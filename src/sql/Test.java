@@ -1,4 +1,4 @@
-package sql;
+package denvercrime;
 
 public class Test {
 
@@ -6,5 +6,4 @@ public class Test {
 		Gui_login guilogin = new Gui_login();
 		guilogin.main(args);
 	}
-
 }

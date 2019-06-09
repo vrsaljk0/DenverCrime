@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2019 at 02:03 PM
+-- Generation Time: Jun 09, 2019 at 07:11 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -1056,6 +1056,15 @@ CREATE TABLE `critical` (
   `isCrit` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `critical`
+--
+
+INSERT INTO `critical` (`id_patrola`, `podrucje`, `isCrit`) VALUES
+(4, 'G', 1),
+(3, 'B', 1),
+(2, 'C', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1078,8 +1087,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID`, `Ime`, `Prezime`, `Username`, `Lozinka`, `Uloga`, `Podrucje`) VALUES
 (1, 'Ana', 'Anic', 'ana', 'ankec', 'A', 'D'),
-(2, 'Mirko', 'Mirkic', 'mirko', 'mirkec', 'P', 'B'),
-(3, 'Pero', 'Peric', 'pero', 'peraja', 'P', 'B');
+(2, 'Mirko', 'Mirkic', 'mirko', 'mirkec', 'P', 'C'),
+(3, 'Pero', 'Peric', 'pero', 'peraja', 'P', 'B'),
+(4, 'Niko', 'Nikic', 'niki', 'nikic', 'P', 'G');
 
 --
 -- Indexes for dumped tables
@@ -1100,7 +1110,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

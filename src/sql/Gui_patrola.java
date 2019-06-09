@@ -1,4 +1,4 @@
-package sql;
+package denvercrime;
 
 import java.awt.EventQueue;
 
@@ -10,7 +10,6 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
 
-import javax.swing.JTextArea;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,17 +19,12 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-//import org.junit.Test;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 
@@ -59,18 +53,12 @@ public class Gui_patrola {
 	//deklaracija labela
 	private static JLabel lblA, lblB, lblC1, lblC2, lblD, lblE1, lblE2, lblF, lblG;
 	
-
-
-
-	/**
-	 * Launch the application.
-	 */
-	//@Test
-	public void main(int id) {
+	
+	public void main(int id, String podrucje) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui_patrola window = new Gui_patrola(id);
+					Gui_patrola window = new Gui_patrola(id, podrucje);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -79,31 +67,21 @@ public class Gui_patrola {
 		});
 	}
 	
-	/**
-	 * Create the application.
-	 */
-	public Gui_patrola(int id) {
+	public Gui_patrola(int id, String podrucje) {
 		try {
-			initialize(id);
+			initialize(id, podrucje);
 			try {
 				actions(id, 4); // 4 - za provjeru koje je boje polje na mapi
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 * @throws IOException 
-	 */
-
 	@SuppressWarnings("unused")
-	private void initialize(int id) throws IOException {
+	private void initialize(int id, String podrucje) throws IOException {
 		
 		offense =new JComboBox(offenses);
 		offense.setBounds(968, 342, 151, 30);
@@ -117,18 +95,19 @@ public class Gui_patrola {
 		time.setColumns(10);
 		
 		frame = new JFrame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setVisible(true);
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().setBackground(UIManager.getColor("Button.darkShadow"));
-		frame.setBounds(300, 300, 1250, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtPatrola = new JTextField();
-		txtPatrola.setBounds(24, 20, 200, 95);
+		txtPatrola.setBounds(24, 25, 311, 79);
 		txtPatrola.setEditable(false);
 		txtPatrola.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
 		txtPatrola.setHorizontalAlignment(SwingConstants.LEFT);
-		txtPatrola.setText("Patrola br." + id);
-		txtPatrola.setBackground(UIManager.getColor("Button.darkShadow"));
+		txtPatrola.setText("Patrola br." + id + " - Područje " + podrucje);
+		txtPatrola.setBackground(Color.WHITE);
 		txtPatrola.setColumns(15);
 		
 		JButton btnCallForHelp = new JButton("Zatrazi pojacanje");
@@ -138,9 +117,8 @@ public class Gui_patrola {
 				try {
 					actions(id, 2);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rije�eno
+				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je riješeno
 			}
 		});
 		btnCallForHelp.setBackground(UIManager.getColor("OptionPane.errorDialog.border.background"));
@@ -152,7 +130,6 @@ public class Gui_patrola {
 				try {
 					actions(id, 3);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rije�eno
 			}
@@ -160,7 +137,7 @@ public class Gui_patrola {
 		btnSolved.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.shadow"));
 		
 		JButton btnNewButton_2 = new JButton("Log out");
-		btnNewButton_2.setBounds(1107, 12, 117, 23);
+		btnNewButton_2.setBounds(1321, 31, 117, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
@@ -171,12 +148,10 @@ public class Gui_patrola {
 		
 
 		BufferedImage image = null;
-		//image = ImageIO.read(new File("C:\\Users\\Lukaku\\Documents\\programsko\\bin\\sql\\denver1.jpg"));
-		image = ImageIO.read(new File("C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\src\\sql\\denver1.jpg"));
-		//image = ImageIO.read(new File("D:\\xampp\\htdocs\\java\\programsko\\src\\sql\\denver1.jpg"));
+		image = ImageIO.read(new File("C:\\Users\\Aspire\\eclipse-workspace\\Programsko\\src\\denvercrime\\denver1.jpg"));
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(43, 269, 570, 550);
+		panel_1.setBounds(50, 157, 570, 550);
 		panel_1.setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -234,7 +209,7 @@ public class Gui_patrola {
 		panel.add(lblF);
 		
 		lblG = new JLabel("");
-		lblG.setBackground(new Color(255,0,0,0)); //crveno
+		lblG.setBackground(new Color(255,0,0,0)); 
 		lblG.setOpaque(true);
 		lblG.setBounds(333, 274, 188, 246);
 		panel.add(lblG);
@@ -468,9 +443,8 @@ public class Gui_patrola {
 		label.setBounds(0, 0, 570, 550);
 		panel.add(label);
 		
-		///MIJENJANJA BOJE ZA DISTRICTE
-		
-		if(false) { //PRIMJER AKO ZELIS FARBAT I OKVIR!!!! district A - ne zelim...
+		///MIJENJANJE BOJE ZA DISTRICTE
+		if(false) { 
 			A1.setBackground(Color.RED);
 			A3.setBackground(Color.RED);
 			A2.setBackground(Color.RED);
@@ -491,7 +465,6 @@ public class Gui_patrola {
 			lblF.setBackground(new Color(255,0,0,64));
 			lblG.setBackground(new Color(255,0,0,64));
 		} 
-		
 		
 		txtUnosZlocina = new JTextField();
 		txtUnosZlocina.setBounds(806, 251, 238, 35);
@@ -539,7 +512,6 @@ public class Gui_patrola {
 				try {
 					actions(0, 1); // 1 - akcija za unos, 2 - akcija za trazenje pomoci, 3 - akcija za obavijest da je rije�eno
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -551,11 +523,12 @@ public class Gui_patrola {
 		neighborhood.setColumns(10);
 		
 		ERROR_forma = new JTextField();
-		ERROR_forma.setText("UNOS NIJE DOBAR!!!!!!!!!!!!!!!!  >:(");
+		ERROR_forma.setText("Molimo vas unesite ispravne podatke!");
 		ERROR_forma.setBackground(Color.RED);
 		ERROR_forma.setBounds(745, 311, 328, 20);
 		ERROR_forma.setColumns(10);
 		ERROR_forma.setVisible(false);
+		
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(txtPatrola);
@@ -586,7 +559,6 @@ public class Gui_patrola {
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			//String url = "jdbc:mysql://localhost:3306/denver?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);
@@ -617,6 +589,8 @@ public class Gui_patrola {
 				System.out.println(off);
 				
 				if (neigh.equals("") || time.getText().equals("")) {
+					ERROR_forma.setText("Molimo vas unesite ispravne podatke!");
+					ERROR_forma.setBackground(Color.RED);
 					ERROR_forma.setVisible(true);
 				} else  {
 					if( off.equals("traffic") || off.equals("Traffic") ) {
@@ -626,34 +600,29 @@ public class Gui_patrola {
 					}
 					
 					System.out.println(query);
-					// create the java statement
 				      Statement st = con.createStatement();
-				      
-				      // execute the query
 				      st.executeUpdate(query);
-				      
-				      
-				      
 				      st.close();
 				      
-				      /*textField_5.setText("");
-				      time.setText("");
-				      textField_4.setText("");
-				      textField_7.setText("");*/
 				      neighborhood.setText("");
 				      offense.setSelectedIndex(0);
 				      ampm.setSelectedIndex(0);
 				      district.setSelectedIndex(0);
-					
+						ERROR_forma.setText("Unos zočina uspješan!");
+						ERROR_forma.setBackground(Color.GREEN);
+						ERROR_forma.setVisible(true);
 					System.out.println("Uspjeh.");
 				}
 			} else if (type == 2) {
+				
+				ERROR_forma.setText("Uspješno zatraženo pojačanje!");
+				ERROR_forma.setBackground(Color.GREEN);
+				ERROR_forma.setVisible(true);
+				
 				String pod = "None";
 				
 				query = "SELECT Podrucje FROM user WHERE ID='" + id + "'";
-				
 			    Statement st = con.createStatement();
-			    
 			    ResultSet rs = st.executeQuery(query);
 			    
 			    while (rs.next()) {
@@ -661,9 +630,7 @@ public class Gui_patrola {
 			    }
 			    
 				query = "INSERT INTO critical (id_patrola, podrucje, isCrit) VALUES ('" + id + "', '" + pod + "', true)";
-			      
 			    st.executeUpdate(query);
-			    
 			    System.out.println("Uspjeh.");
 			    
 			    if (pod.equals("A")) {
@@ -693,21 +660,23 @@ public class Gui_patrola {
 			    	lblG.setOpaque(true);
 			    }
 			} else if (type == 3) {
+				
+				ERROR_forma.setText("Potvrđena rješenost situacije!");
+				ERROR_forma.setBackground(Color.GREEN);
+				ERROR_forma.setVisible(true);
+				
 				String pod = "None";
 				
 				query = "SELECT Podrucje FROM critical WHERE id_patrola='" + id + "' AND isCrit=True";
 				
 			    Statement st = con.createStatement();
-			    
 			    ResultSet rs = st.executeQuery(query);
 			    
 			    while (rs.next()) {
 			        pod = rs.getString("Podrucje");
 			    }
 				query = "UPDATE critical SET isCrit=False WHERE id_patrola='" + id + "'";
-			      
 			    st.executeUpdate(query);
-			    
 			    System.out.println("Uspjeh.");
 			    
 			    if (pod.equals("A")) {
@@ -731,9 +700,7 @@ public class Gui_patrola {
 				String pod = "None";
 				
 				query = "SELECT Podrucje FROM critical WHERE isCrit=True";
-				
 			    Statement st = con.createStatement();
-			    
 			    ResultSet rs = st.executeQuery(query);
 			    
 			    while (rs.next()) {
@@ -769,7 +736,7 @@ public class Gui_patrola {
 			}
 			 
 			return con;
-		}catch( Exception e ) {
+		} catch( Exception e ) {
 			System.out.println(e);
 		}
 		return null;

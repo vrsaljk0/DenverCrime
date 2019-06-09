@@ -1,4 +1,4 @@
-package sql;
+package denvercrime;
 
 import java.sql.*;
 
@@ -6,9 +6,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		getConnection();
-		
-		//Mine.dataMine();
-		Gui_login guilogin = new Gui_login();
+		//Gui_login guilogin = new Gui_login();
 	}
 	
 	public static Connection getConnection() throws Exception{
@@ -23,31 +21,23 @@ public class Main {
 			System.out.println("It's connected!!!!!");
 
 			String query = "SELECT * FROM user";
-
-		      // create the java statement
-		      Statement st = con.createStatement();
+		    Statement st = con.createStatement();
+		    ResultSet rs = st.executeQuery(query);
 		      
-		      // execute the query, and get a java resultset
-		      ResultSet rs = st.executeQuery(query);
-		      
-		      // iterate through the java resultset
-		      while (rs.next())
-		      {
-		        int id = rs.getInt("ID");
-		        String firstName = rs.getString("Ime");
-		        String lastName = rs.getString("Prezime");
-		        int role = rs.getInt("Područje");
-		        
-		        // print the results
-		        System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, role);
-		      }
-		      st.close();
+			while (rs.next()) {
+			    int id = rs.getInt("ID");
+			    String firstName = rs.getString("Ime");
+			    String lastName = rs.getString("Prezime");
+			    String role = rs.getString("Podrucje");
+			
+			    System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, role);
+			}
+		    st.close();
 			 
 			return con;
-		}catch( Exception e ) {
+		} catch( Exception e ) {
 			System.out.println(e);
 		}
-		
 		return null;
 	} 
 	

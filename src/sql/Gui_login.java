@@ -1,20 +1,16 @@
-package sql;
+package denvercrime;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
 import java.awt.Color;
-
 import javax.swing.UIManager;
-
-import com.*;
 
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
-import javax.swing.DropMode;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,18 +18,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
-import java.sql.*;
-
 public class Gui_login {
 
 	private static JFrame frame;
 	private JTextField txtDenvercrime;
 	private static JTextField txtKorisnikoIme, error;
-	private static JTextField txtLozinka;
+	private static JPasswordField txtLozinka;
+	private JTextField txtKorisnikoIme_1;
+	private JTextField txtLozinka_1;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,26 +40,21 @@ public class Gui_login {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Gui_login() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setVisible(true);
 		frame.getContentPane().setBackground(UIManager.getColor("Button.darkShadow"));
-		frame.setBounds(300, 300, 1350, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		txtDenvercrime = new JTextField();
 		txtDenvercrime.setEditable(false);
-		txtDenvercrime.setBackground(UIManager.getColor("Button.darkShadow"));
+		txtDenvercrime.setBackground(Color.WHITE);
 		txtDenvercrime.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
 		txtDenvercrime.setText("DenverCrime");
 		txtDenvercrime.setBounds(15, 15, 200, 39);
@@ -80,26 +68,26 @@ public class Gui_login {
 		error.setColumns(35);
 		error.setVisible(false);
 		error.setBackground(Color.red);
-		error.setBounds(555, 190, 250, 100);
+		error.setBounds(769, 190, 250, 100);
 		frame.getContentPane().add(error);
 		
 		txtKorisnikoIme = new JTextField();
-		txtKorisnikoIme.setText("KorisniÄ�ko ime");
+		txtKorisnikoIme.setText("");
 		txtKorisnikoIme.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
 		txtKorisnikoIme.setEditable(true);
 		txtKorisnikoIme.setColumns(10);
 		txtKorisnikoIme.setBackground(UIManager.getColor("Button.background"));
-		txtKorisnikoIme.setBounds(575, 316, 200, 50);
+		txtKorisnikoIme.setBounds(789, 316, 200, 50);
 		if( txtKorisnikoIme.isFocusOwner() == true ) System.out.println("ej");
 		frame.getContentPane().add(txtKorisnikoIme);
 		
-		txtLozinka = new JTextField();
-		txtLozinka.setText("Lozinka");
+		txtLozinka = new JPasswordField();
+		txtLozinka.setText("");
 		txtLozinka.setFont(new Font("Century Schoolbook L", Font.BOLD, 20));
 		txtLozinka.setEditable(true);
 		txtLozinka.setColumns(10);
 		txtLozinka.setBackground(UIManager.getColor("Button.background"));
-		txtLozinka.setBounds(575, 407, 200, 50);
+		txtLozinka.setBounds(789, 407, 200, 50);
 		txtLozinka.setFocusable(true);
 		if( txtLozinka.isFocusOwner() ) txtLozinka.setText("");
 		frame.getContentPane().add(txtLozinka);
@@ -111,15 +99,33 @@ public class Gui_login {
 				try {
 					getConnection();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnUlogirajSe.setBounds(575, 509, 200, 50);
+		btnUlogirajSe.setBounds(789, 509, 200, 50);
 		frame.getContentPane().add(btnUlogirajSe);
+		
+		txtKorisnikoIme_1 = new JTextField();
+		txtKorisnikoIme_1.setText("Korisničko ime:");
+		txtKorisnikoIme_1.setFont(new Font("Dialog", Font.BOLD, 20));
+		txtKorisnikoIme_1.setEditable(false);
+		txtKorisnikoIme_1.setColumns(10);
+		txtKorisnikoIme_1.setBackground(UIManager.getColor("Button.darkShadow"));
+		txtKorisnikoIme_1.setBounds(552, 316, 206, 50);
+		frame.getContentPane().add(txtKorisnikoIme_1);
+		
+		txtLozinka_1 = new JTextField();
+		txtLozinka_1.setText("Lozinka:");
+		txtLozinka_1.setFont(new Font("Dialog", Font.BOLD, 20));
+		txtLozinka_1.setEditable(false);
+		txtLozinka_1.setColumns(10);
+		txtLozinka_1.setBackground(UIManager.getColor("Button.darkShadow"));
+		txtLozinka_1.setBounds(552, 407, 206, 50);
+		frame.getContentPane().add(txtLozinka_1);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static Connection getConnection() throws Exception{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
@@ -132,17 +138,12 @@ public class Gui_login {
 			System.out.println("It's connected!!!!!");
 
 			String query = "SELECT * FROM user";
-
-		      // create the java statement
+			
 		      Statement st = con.createStatement();
-		      
-		      // execute the query, and get a java resultset
 		      ResultSet rs = st.executeQuery(query);
 		      
-		      // iterate through the java resultset
 		      boolean noMatch = false;
-		      while (rs.next())
-		      {
+		      while (rs.next()) {
 		        int id = rs.getInt("ID");
 		        String user = rs.getString("Username");
 		        String pas = rs.getString("Lozinka");
@@ -164,10 +165,11 @@ public class Gui_login {
 		        		Gui_admin guiadmin = new Gui_admin();
 		        		guiadmin.main(id);
 		        	} else {
+		        		String podrucje = rs.getString("Podrucje");
 		        		System.out.println("Opala patrola!");
 		        		frame.setVisible(false);
-		        		Gui_patrola guipatrola = new Gui_patrola(id);
-		        		guipatrola.main(id);
+		        		Gui_patrola guipatrola = new Gui_patrola(id, podrucje);
+		        		guipatrola.main(id, podrucje);
 		        	}
 		        } else {
 		        	noMatch = true;
@@ -186,7 +188,7 @@ public class Gui_login {
 		      st.close();
 			 
 			return con;
-		}catch( Exception e ) {
+		} catch( Exception e ) {
 			System.out.println(e);
 		}
 		return null;

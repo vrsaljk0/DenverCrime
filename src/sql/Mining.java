@@ -1,4 +1,4 @@
-package sql;
+package denvercrime;
 
 import weka.associations.*;
 import weka.core.Instances;
@@ -11,8 +11,7 @@ import weka.filters.unsupervised.attribute.NumericToBinary;
 public class Mining {
 	
 	public static String getRules() throws Exception {
-		//String dataset = "C:\\Users\\Lukaku\\Documents\\programsko\\crime_sreden.csv";
-		String dataset = "C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\crime.csv";
+		String dataset = "C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza\\crime.csv"; //prilagoditi path
 		DataSource source = new DataSource(dataset);
 		Instances data = source.getDataSet();
 				
@@ -29,8 +28,7 @@ public class Mining {
 	}
 	
 	public static String getRulesFP() throws Exception {
-		//String dataset = "C:\\Users\\Lukaku\\Documents\\programsko\\crime_sreden.csv";
-		String dataset = "C:\\Romano\\2.god\\Objektno\\eclipse_vj\\MySql-vjezba\\crime.csv";
+		String dataset = "C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza\\crime.csv"; //prilagoditi path
 		DataSource source = new DataSource(dataset);
 		Instances data = source.getDataSet();
 		

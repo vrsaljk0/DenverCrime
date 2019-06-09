@@ -1,4 +1,4 @@
-package sql;
+package denvercrime;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ public class Create_CSV {
 
 	public static void getCSV() {
 		try {
-			PrintWriter file = new PrintWriter(new File("C:\\Users\\Lukaku\\Documents\\programsko\\crime_rules.csv")); //path gdje želimo spremiti bazu
+			PrintWriter file = new PrintWriter(new File("C:\\Users\\Aspire\\Desktop\\FAKS\\Programsko inž-2019\\baza")); //putanja gdje želimo spremiti bazu
 			StringBuilder str = new StringBuilder();
 			
 			Connection connection = getConnection();
@@ -48,7 +48,7 @@ public class Create_CSV {
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			//url prilagoditi - mysql://server:port_number/ime_baze
-			String url = "jdbc:mysql://localhost:3306/denver_crime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/denvercrime?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String username = "root";
 			String password = "";
 			Class.forName(driver);

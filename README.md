@@ -25,8 +25,9 @@ dizajna, implementacije, testiranja i integracije u sklopu kolegija _Programsko 
 provjerite da ste u Java Build Path te u tabu Libraries, klik na Classpath (ukoliko se ne jave opcije
 Modulepath i Classpath preskočiti ovaj korak), klik na Add External JARs -> naći put do weka.jar i mysql-connector-java-8.0.15.jar te ih učitati.
 * U klasi:
-	Gui_patrola.java na liniji 151.
-	Gui_admin.java na liniji 182.
+	* Gui_patrola.java na liniji 151.
+	* Gui_admin.java na liniji 182.
+
 prilagoditi putanju do slike koja se nalazi u skinutome zip-u.
 * U klasi Mining.java na linijama 14. i 31. prilagoditi putanju do crime.csv koji se nalazi u skinutome zip-u.
 * Pokrenuti kod i ulogirati se sa odgovarajućim podacima koji se nalaze u bazi u tablici user.

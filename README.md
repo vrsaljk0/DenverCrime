@@ -5,7 +5,7 @@ Denver Crime aplikacija omogućuje kontrolu i pregled zločina na području grad
 ### Motivation
 
 * Realizirati projekt zasnovan na općenitom modelu razvoja kroz faze inženjerstva zahtjeva, 
-dizajna, implementacije, testiranja i integracije.   
+dizajna, implementacije, testiranja i integracije u sklopu kolegija _Programsko inženjerstvo_.   
 
 * Simulirati stvarno radno okruženje u projektnom timu.
 
